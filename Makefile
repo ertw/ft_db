@@ -1,8 +1,10 @@
 #!/usr/bin/make -f
 
+LIBRARY = ./libft/libft.a
+
 NAME = program
 
-HEADERS = program.h headers.h
+HEADERS = program.h
 
 OBJECTS = program.o
 
@@ -11,7 +13,7 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $@
+	$(CC) $(CFLAGS) $(OBJECTS) -L. ./libft/libft.a -o $@
 
 %.o: %.c $(HEADERS)
 	$(CC) -c $< -o $@
