@@ -13,6 +13,7 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
+	make -C ./libft/
 	$(CC) $(CFLAGS) $(OBJECTS) -L. ./libft/libft.a -o $@
 
 %.o: %.c $(HEADERS)
