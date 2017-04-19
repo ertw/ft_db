@@ -16,14 +16,20 @@ int		database_read(FILE *file, int (*action)(char *, int))
 	char		*line;
 	char		**splitstring;
 	int		ret;
+	int		status;
 
-	while (getline(&line, &bufsize, file))
+	while ((status = getline(&line, &bufsize, file)) == 0)
 	{
 		splitstring = ft_strsplit(line, ' ');
+		if (!(ret = action(splitstring[0], atoi(splitstring[1]))))
+		{
+			ft_strdel(&splitstring[1]);
+			ft_strdel(&splitstring[0]);
+			ft_memdel((void*)&splitstring);
+			return (ret);
+		}
 	}
-	while (getdelim(&line, &bufsize, (int)' ', file) > 0)
-	{
-	}
+	return (0);
 }
 
 /* takes a person, returns an age */

@@ -1,4 +1,12 @@
+# OS junk
+._*
+.nfs*
+*.swp
+*.DS_Store
+
 # Object files
+a.out
+*.output
 *.o
 *.ko
 *.obj
