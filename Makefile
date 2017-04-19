@@ -2,11 +2,11 @@
 
 LIBRARY = ./libft/libft.a
 
-NAME = program
+NAME = ft_db
 
-HEADERS = program.h
+HEADERS = ft_db.h
 
-OBJECTS = program.o
+OBJECTS = ft_db.o
 
 ifeq ($(mode),release)
 	CFLAGS = -Wall -Werror -Wextra -g
@@ -15,7 +15,6 @@ else
 	CFLAGS = -Wall -Werror -Wextra -g -fno-omit-frame-pointer -fsanitize=address
 endif
 
-.PHONY:all
 all: information $(NAME)
 
 $(NAME): $(OBJECTS)
@@ -25,15 +24,12 @@ $(NAME): $(OBJECTS)
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY:clean
 clean:
 	rm -f $(OBJECTS)
-.PHONY:fclean
 fclean: clean
 	rm -f $(NAME) $(OBJECTS)
-.PHONY:re
 re: fclean all
 
-.PHONY:information
 information:
 	@printf "Build mode "$(mode)" selected\n"
+.PHONY:all clean fclean re information
