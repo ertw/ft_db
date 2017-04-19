@@ -20,6 +20,7 @@
 # include <stddef.h>
 # include <locale.h>
 # include <limits.h>
+# include <inttypes.h>
 # define BUFF_SIZE 42
 # define MAX_FD 20
 
