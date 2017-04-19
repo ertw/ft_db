@@ -5,6 +5,7 @@
 *.DS_Store
 
 # Object files
+ft_db
 a.out
 *.output
 *.o
