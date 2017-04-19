@@ -56,9 +56,6 @@ void		get_int(t_print *all, va_list arg)
 
 void		get_uint(t_print *all, va_list arg)
 {
-	intmax_t x;
-
-	x = 0;
 	if (!all->length)
 		all->raw_x = va_arg(arg, unsigned int);
 	else if (all->length[0] == 'h' && all->length[1] == 'h')
