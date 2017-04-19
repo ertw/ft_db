@@ -19,7 +19,7 @@ all: information $(NAME)
 
 $(NAME): $(OBJECTS)
 	make -C ./libft/ mode=$(mode)
-	$(CC) $(CFLAGS) $(OBJECTS) -L. ./libft/libft.a -o $@
+	$(CC) $(CFLAGS) $(OBJECTS) -L. ./libft/libftprintf.a -o $@
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
