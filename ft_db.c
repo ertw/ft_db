@@ -44,7 +44,7 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 	cert_check(meta);
 }
 
-void	request_manager(t_parse *meta)
+void	dispatch_manager(t_parse *meta)
 {
 	meta = NULL;
 	ft_putstr("request_manager ready to do shit\n");
@@ -61,6 +61,6 @@ int		main(int argc, char **argv)
 	if (meta.cert_present == 0)
 		user_login(&meta);
 	else
-		request_manager(&meta);
+		dispatch_manager(&meta);
 	return (0);
 }
