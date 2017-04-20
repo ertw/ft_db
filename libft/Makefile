@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -g -fno-omit-frame-pointer -fsanitize=address
 SRCS = libft/ft_memset.c \
 	   libft/ft_bzero.c \
 	   libft/ft_memcpy.c \
@@ -130,7 +130,7 @@ SRCS = libft/ft_memset.c \
 HDIR =	./includes
 
 %.o: %.c
-	@gcc $(CFLAGS) -I$(HDIR) -c -o $@ $< -g
+	cc $(CFLAGS) -I$(HDIR) -c -o $@ $< -g
 
 OBJS =	$(subst .c,.o,$(SRCS))
 
@@ -139,7 +139,7 @@ RM = @rm -f
 all: $(NAME)
 
 $(NAME):
-	@gcc $(CFLAGS) -c $(SRCS) $?
+	cc $(CFLAGS) -c $(SRCS) $?
 	@ar -rc $(NAME) *.o $?
 	@ranlib $(NAME) $?
 
