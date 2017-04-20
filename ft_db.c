@@ -11,7 +11,6 @@ int	cred_check(char *ptr, char *buff)
 		if (buff[x] == '$')
 		{
 			start = x + 1;
-			printf("ptr: %s | buff + start: %s\n", ptr, buff + start + 1);
 			if (ft_strdelic(ptr, buff + start, '\n'))
 			{
 				ft_strdel(&ptr);

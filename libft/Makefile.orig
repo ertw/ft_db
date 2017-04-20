@@ -126,7 +126,7 @@ SRCS = libft/ft_memset.c \
 	   libft/ft_strdup2d.c \
 	   libft/ft_strdel2d.c \
 	   libft/ft_strndup2d.c \
-	   libft/ft_strdelic.c \
+
 
 HDIR =	./includes
 
@@ -140,7 +140,11 @@ RM = @rm -f
 all: $(NAME)
 
 $(NAME):
+<<<<<<< 97b3b9608d5e3cf844881ca909bbd796c2eff374
 	cc $(CFLAGS) -c $(SRCS) $?
+=======
+	@gcc $(CFLAGS) -c $(SRCS) -g $?
+>>>>>>> Login/PW system is functional | Probably going to start working on an array version of the current database schema.
 	@ar -rc $(NAME) *.o $?
 	@ranlib $(NAME) $?
 

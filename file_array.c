@@ -62,7 +62,7 @@ int		main(void)
 
 	if (!(head = database_read(fopen("file.db", "r"))))
 		return (1);
-	sorted = find_name(head, "ewilliam");
+	sorted = find_name(head, "mkok");
 	cursor = sorted;
 	while (cursor)
 	{
