@@ -6,7 +6,7 @@ NAME = ft_db
 
 HEADERS = ft_db.h
 
-OBJECTS = ft_db.o
+OBJECTS = ft_db.o ft_strdelic.o
 
 ifeq ($(mode),release)
 	CFLAGS = -Wall -Werror -Wextra -g

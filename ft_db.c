@@ -1,27 +1,43 @@
 #include "ft_db.h"
 
-int	handle_login(char **argv)
+int	cred_check(char *ptr, char *buff)
 {
-	int		login;
-	char	*stream;
+	int x;
+	int start;
 
-	stream = NULL;
-	login = open("login.txt", O_RDONLY);
-	while (get_next_line(login, &stream))
+	x = 0;
+	while (buff[x])
 	{
-		if ((ft_strncmp(stream, argv[1], ft_strlen(argv[1]))) == 0)
+		if (buff[x] == '$')
 		{
-			ft_strdel(&stream);
-			get_next_line(login, &stream);
-			if ((ft_strcmp(stream, argv[2])) == 0)
+			start = x + 1;
+			printf("ptr: %s | buff + start: %s\n", ptr, buff + start + 1);
+			if (ft_strdelic(ptr, buff + start, '\n'))
 			{
-				ft_strdel(&stream);
+				ft_strdel(&ptr);
 				return (1);
 			}
-			else
-				break ;
 		}
+		x++;
 	}
+	return (0);
+}
+
+int	handle_login(char **argv)
+{
+	int		fd;
+	int		r;
+	char	*ptr;
+	char	buff[4000];
+
+	fd = open("login.txt", O_RDONLY);
+	r = read(fd, &buff, 3999);
+	buff[r] = '\0';
+	ptr = ft_strjoin(argv[1], ">");
+	ptr = ft_strxjoin(ptr, argv[2], 1);
+	ptr = ft_strxjoin(ptr, "\n", 1);
+	if ((cred_check(ptr, buff)))
+		return (1);
 	return (0);
 }
 
@@ -32,7 +48,7 @@ int		main(int argc, char **argv)
 	else
 	{
 		if (handle_login(argv))
-			ft_putstr("Welcome to our database, friend. :D~\n");
+			printf("Welcome to our database, %s.\n", argv[1]);
 		else
 			ft_putstr("Invalid username/Pass\n");
 	}
