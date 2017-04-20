@@ -15,3 +15,4 @@ typedef struct		s_data
 }					t_data;
 
 int					ft_strdelic(char *s1, char *s2, char delim);
+void				user_login(t_parse *meta);
