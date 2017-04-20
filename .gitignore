@@ -4,6 +4,9 @@
 *.swp
 *.DS_Store
 
+# Project specific
+cert.ers
+
 # Object files
 ft_db
 a.out
