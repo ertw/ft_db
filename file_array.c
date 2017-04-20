@@ -25,17 +25,28 @@ t_list		*database_read(FILE *file)
 
 t_list			*find_name(t_list *alst, char *name)
 {
-	t_list		*node = NULL;
-	t_data		data;
+	t_list		*head = NULL;
+	t_list		*cursor = NULL;
 
-	if (!alst)
-		return (NULL);
-	if (!(strcmp(C_DATA(alst)->name, name)))
+	while (alst)
 	{
-		memcpy(&data, C_DATA(alst), sizeof(data));
-		node = ft_lstnew(&data, sizeof(data));
-		node->next = find_name(alst->next, name);
+		if (!(strcmp(C_DATA(alst)->name, name)))
+		{
+			if (!head)
+			{
+				head = ft_lstnew(C_DATA(alst), sizeof(*C_DATA(alst)));
+				cursor = head;
+			}
+			else
+			{
+				cursor->next = ft_lstnew(C_DATA(alst), sizeof(*C_DATA(alst)));
+				cursor = cursor->next;
+			}
+		}
+		alst = alst->next;
+
 	}
+	return (head);
 }
 
 /* print each node */
@@ -62,7 +73,7 @@ int		main(void)
 
 	if (!(head = database_read(fopen("file.db", "r"))))
 		return (1);
-	sorted = find_name(head, "mkok");
+	sorted = find_name(head, "ewilliam");
 	cursor = sorted;
 	while (cursor)
 	{

@@ -111,7 +111,6 @@ ft_strcmp	libft/libft/ft_strcmp.c	/^int		ft_strcmp(const char *s1, const char *s
 ft_strcpy	libft/libft/ft_strcpy.c	/^char	*ft_strcpy(char *dst, const char *src)$/;"	f	typeref:typename:char *
 ft_strdel	libft/libft/ft_strdel.c	/^void	ft_strdel(char **as)$/;"	f	typeref:typename:void
 ft_strdel2d	libft/libft/ft_strdel2d.c	/^void	ft_strdel2d(char **str)$/;"	f	typeref:typename:void
-ft_strdelic	ft_strdelic.c	/^int		ft_strdelic(char *s1, char *s2, char delim)$/;"	f	typeref:typename:int
 ft_strdelic	libft/libft/ft_strdelic.c	/^int		ft_strdelic(char *s1, char *s2, char delim)$/;"	f	typeref:typename:int
 ft_strdup	libft/libft/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/;"	f	typeref:typename:char *
 ft_strdup2d	libft/libft/ft_strdup2d.c	/^char	**ft_strdup2d(char **str2d, int start)$/;"	f	typeref:typename:char **
