@@ -23,11 +23,11 @@ MAX_FD	libft/includes/libft.h	/^# define MAX_FD /;"	d
 NAME	Makefile	/^NAME = ft_db$/;"	m
 NAME	libft/Makefile	/^NAME = libftprintf.a$/;"	m
 NUM_ROWS	file_array.c	/^#define NUM_ROWS /;"	d	file:
-OBJECTS	Makefile	/^OBJECTS = ft_db.o$/;"	m
+OBJECTS	Makefile	/^OBJECTS = ft_db.o ft_strdelic.o$/;"	m
 OBJS	libft/Makefile	/^OBJS =	$(subst .c,.o,$(SRCS))$/;"	m
 RM	libft/Makefile	/^RM = @rm -f$/;"	m
 SRCS	libft/Makefile	/^SRCS = libft\/ft_memset.c \\$/;"	m
-age	file_array.c	/^	int		age;$/;"	m	struct:s_data	typeref:typename:int	file:
+age	ft_db.h	/^	int		age;$/;"	m	struct:s_data	typeref:typename:int
 all	Makefile	/^all: information $(NAME)$/;"	t
 all	libft/Makefile	/^all: $(NAME)$/;"	t
 arg	libft/includes/libft.h	/^	va_list			arg;$/;"	m	struct:s_print	typeref:typename:va_list
@@ -38,6 +38,7 @@ clean	libft/Makefile	/^clean:$/;"	t
 content	libft/includes/libft.h	/^	void			*content;$/;"	m	struct:s_list	typeref:typename:void *
 content_size	libft/includes/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list	typeref:typename:size_t
 create_ret	libft/get_next_line/get_next_line.c	/^void	create_ret(t_n *a, char **line)$/;"	f	typeref:typename:void
+cred_check	ft_db.c	/^int	cred_check(char *ptr, char *buff)$/;"	f	typeref:typename:int
 database_read	file_array.c	/^t_list		*database_read(FILE *file)$/;"	f	typeref:typename:t_list *
 decimal	libft/printf/ft_decimal.c	/^void	decimal(t_print *all)$/;"	f	typeref:typename:void
 do_it_now	libft/printf/ft_parse.c	/^void		do_it_now(t_print *all)$/;"	f	typeref:typename:void
@@ -110,6 +111,8 @@ ft_strcmp	libft/libft/ft_strcmp.c	/^int		ft_strcmp(const char *s1, const char *s
 ft_strcpy	libft/libft/ft_strcpy.c	/^char	*ft_strcpy(char *dst, const char *src)$/;"	f	typeref:typename:char *
 ft_strdel	libft/libft/ft_strdel.c	/^void	ft_strdel(char **as)$/;"	f	typeref:typename:void
 ft_strdel2d	libft/libft/ft_strdel2d.c	/^void	ft_strdel2d(char **str)$/;"	f	typeref:typename:void
+ft_strdelic	ft_strdelic.c	/^int		ft_strdelic(char *s1, char *s2, char delim)$/;"	f	typeref:typename:int
+ft_strdelic	libft/libft/ft_strdelic.c	/^int		ft_strdelic(char *s1, char *s2, char delim)$/;"	f	typeref:typename:int
 ft_strdup	libft/libft/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/;"	f	typeref:typename:char *
 ft_strdup2d	libft/libft/ft_strdup2d.c	/^char	**ft_strdup2d(char **str2d, int start)$/;"	f	typeref:typename:char **
 ft_strequ	libft/libft/ft_strequ.c	/^int		ft_strequ(char const *s1, char const *s2)$/;"	f	typeref:typename:int
@@ -178,7 +181,7 @@ main	file_array.c	/^int		main(void)$/;"	f	typeref:typename:int
 main	ft_db.c	/^int		main(int argc, char **argv)$/;"	f	typeref:typename:int
 main	libft/printf/main.c	/^int		main(int argc, char **argv)$/;"	f	typeref:typename:int
 mode	Makefile	/^	mode = debug$/;"	m
-name	file_array.c	/^	char		name[128];$/;"	m	struct:s_data	typeref:typename:char[128]	file:
+name	ft_db.h	/^	char		name[128];$/;"	m	struct:s_data	typeref:typename:char[128]
 next	libft/includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 norm	libft/printf/ft_oct.c	/^static void	norm(t_print *all, char c)$/;"	f	typeref:typename:void	file:
 oct	libft/printf/ft_oct.c	/^void		oct(t_print *all)$/;"	f	typeref:typename:void
@@ -200,7 +203,7 @@ ret	libft/includes/libft.h	/^	int				ret;$/;"	m	struct:s_n	typeref:typename:int
 ret	libft/includes/libft.h	/^	int				ret;$/;"	m	struct:s_print	typeref:typename:int
 retrieve	libft/printf/ft_retrieve.c	/^void		retrieve(t_print *all, va_list arg, char c)$/;"	f	typeref:typename:void
 right_align	libft/printf/ft_right_align.c	/^t_print			*right_align(t_print *all)$/;"	f	typeref:typename:t_print *
-s_data	file_array.c	/^typedef struct		s_data$/;"	s	file:
+s_data	ft_db.h	/^typedef struct		s_data$/;"	s
 s_list	libft/includes/libft.h	/^typedef struct		s_list$/;"	s
 s_n	libft/includes/libft.h	/^typedef struct		s_n$/;"	s
 s_print	libft/includes/libft.h	/^typedef struct		s_print$/;"	s
@@ -212,7 +215,7 @@ specifier	libft/printf/ft_flags.c	/^int	specifier(t_print *all, char c)$/;"	f	ty
 start	libft/printf/ft_colors.c	/^static int	start(char *f, int c)$/;"	f	typeref:typename:int	file:
 str	libft/includes/libft.h	/^	char			*str;$/;"	m	struct:s_n	typeref:typename:char *
 string	libft/printf/ft_format_simple.c	/^void	string(t_print *all)$/;"	f	typeref:typename:void
-t_data	file_array.c	/^}			t_data;$/;"	t	typeref:struct:s_data	file:
+t_data	ft_db.h	/^}			t_data;$/;"	t	typeref:struct:s_data
 t_list	libft/includes/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
 t_n	libft/includes/libft.h	/^}					t_n;$/;"	t	typeref:struct:s_n
 t_print	libft/includes/libft.h	/^}					t_print;$/;"	t	typeref:struct:s_print

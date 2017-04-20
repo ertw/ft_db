@@ -4,12 +4,6 @@
 #define ERR_NO_SPACE 10
 #define C_DATA(node289) ((t_data*)node289->content)
 
-typedef struct		s_data
-{
-	char		name[128];
-	int		age;
-}			t_data;
-
 /* database format:
  * line1 col1\n
  * line2 col2\n
@@ -32,14 +26,14 @@ t_list		*database_read(FILE *file)
 t_list			*find_name(t_list *alst, char *name)
 {
 	t_list		*node = NULL;
-	t_data		
+	t_data		data;
 
 	if (!alst)
 		return (NULL);
 	if (!(strcmp(C_DATA(alst)->name, name)))
 	{
-		node = ft_lstnew(C_DATA(alst), sizeof(t_data));
-		ft_lstmap();
+		memcpy(&data, C_DATA(alst), sizeof(data));
+		node = ft_lstnew(&data, sizeof(data));
 		node->next = find_name(alst->next, name);
 	}
 }
@@ -69,7 +63,7 @@ int		main(void)
 	if (!(head = database_read(fopen("file.db", "r"))))
 		return (1);
 	sorted = find_name(head, "ewilliam");
-	cursor = head;
+	cursor = sorted;
 	while (cursor)
 	{
 		lst_node_print(cursor);
@@ -77,7 +71,7 @@ int		main(void)
 	}
 //	ft_lstiter(sorted, lst_node_print);
 	ft_lstdel(&head, lst_del_data);
-//	ft_lstdel(&sorted, lst_del_data);
+	ft_lstdel(&sorted, lst_del_data);
 }
 
 ///* takes a person, returns an age */
