@@ -23,7 +23,7 @@ MAX_FD	libft/includes/libft.h	/^# define MAX_FD /;"	d
 NAME	Makefile	/^NAME = ft_db$/;"	m
 NAME	libft/Makefile	/^NAME = libftprintf.a$/;"	m
 NUM_ROWS	file_array.c	/^#define NUM_ROWS /;"	d	file:
-OBJECTS	Makefile	/^OBJECTS = ft_db.o ft_strdelic.o$/;"	m
+OBJECTS	Makefile	/^OBJECTS = ft_db.o$/;"	m
 OBJS	libft/Makefile	/^OBJS =	$(subst .c,.o,$(SRCS))$/;"	m
 RM	libft/Makefile	/^RM = @rm -f$/;"	m
 SRCS	libft/Makefile	/^SRCS = libft\/ft_memset.c \\$/;"	m
