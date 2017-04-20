@@ -1,4 +1,4 @@
-#include "ft_db.h"
+#include "../includes/libft.h"
 
 int		ft_strdelic(char *s1, char *s2, char delim)
 {
