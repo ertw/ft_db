@@ -1,26 +1,41 @@
 #include "ft_db.h"
 #include <stdio.h>
 
+enum e_types {t_paren, t_string};
+
 typedef struct		s_entry
 {
 	char		type[16];
 	char		*entry;
 }			t_entry;
 
-//(()(object))
-//((person)((name)(age)))
-//(((Erik Williamson)(string))(object))
-//(((Erik Williamson)(name))((29)(age))(person))
-//(((Marco Kok)(name))((23)(age))(person))
+/* s-expression */
+//((person)(((name)(Erik Williamson))((age)(29))))
 
-void		get_token(char *str, char *match)
+t_list		*tokenize(char *str)
 {
 	int	i = 0;
+	t_list	*node = NULL;
+	char	*close_paren;
+	char	*tmp;
 
-	while (str[i])
+	if (str[i])
 	{
-
+		if (str[i] == '(' || str[i] == ')')
+		{
+			node = ft_lstnew(&str[i], sizeof(str[i]));
+			return (node->next = tokenize(++str));
+		}
+		else
+		{
+			if (!(close_paren = strchr(str, ')')))
+				printf("Error: ')' not found");
+			tmp = strndup(str, close_paren - str);
+			node = ft_lstnew(&tmp, sizeof(tmp));
+			return (node->next = tokenize(++str));
+		}
 	}
+	return (NULL);
 }
 
 t_list		*database_read(FILE *file)
@@ -38,6 +53,7 @@ t_list		*database_read(FILE *file)
 int		main(void)
 {
 	t_list	*head;
-	if (!(head = database_read(fopen("file.db", "r"))))
-		return (1);
+//	if (!(head = database_read(fopen("file.db", "r"))))
+//		return (1);
+	head = tokenize("((person)(((name)(Erik Williamson))((age)(29))))");
 }
