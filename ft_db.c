@@ -30,24 +30,34 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 {
 	int	c;
 
-	while ((c = getopt(argc, argv, "-l")) != -1)
+	while ((c = getopt(argc, argv, "-al")) != -1)
 	{
 		if (c == 'l')
 			meta->opt_l = 1;
+		else if (c == 'a')
+			meta->opt_a = 1;
 		else
 		{
 			printf("EZ-DB: %c : invalid option\n", c);
-			ft_putstr("usage: EZ-DB [-l] [...]\n");
+			ft_putstr("usage: EZ-DB [-al] [...]\n");
 			break ;
 		}
 	}
 	cert_check(meta);
 }
 
-void	dispatch_manager(t_parse *meta)
+void	dispatch_manager(t_parse *meta, char **argv)
 {
-	meta = NULL;
-	ft_putstr("request_manager ready to do shit\n");
+	if (meta->opt_a == 1)
+	{
+		ft_putstr("put add array function here\n");
+		add_array_field(meta, argv);
+	}
+	if (meta->opt_l == 1)
+		display_array_db(meta, argv);
+	//add fork function here for manual editing through vim
+	//if(meta->opt_z == 1)
+	//    fork_with_vim(meta, argv);
 }
 
 int		main(int argc, char **argv)
@@ -61,6 +71,6 @@ int		main(int argc, char **argv)
 	if (meta.cert_present == 0)
 		user_login(&meta);
 	else
-		dispatch_manager(&meta);
+		dispatch_manager(&meta, argv);
 	return (0);
 }

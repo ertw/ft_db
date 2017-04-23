@@ -18,8 +18,14 @@
 
 typedef struct		s_parse
 {
+	char			data[100];
+	FILE			*fd;
 	int				opt_l;
+	int				opt_a;
+	int				columns;
+	int				rows;
 	int				cert_present;
+	int				x;
 }					t_parse;
 
 typedef struct		s_data
@@ -28,7 +34,12 @@ typedef struct		s_data
 	int				age;
 }					t_data;
 
-int					ft_strdelic(char *s1, char *s2, char delim);
 void				user_login(t_parse *meta);
+void				add_array_field(t_parse *meta, char **argv);
+void				display_array_db(t_parse *meta, char **argv);
+int					count_columns(t_parse *meta, char *source);
+int					count_rows(char *source);
+char				***fill_db(t_parse *meta, char *source);
+void				display_db(t_parse *meta, char ***db);
 
 #endif

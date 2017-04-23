@@ -47,6 +47,7 @@ int		handle_login(char *user, char *pass)
 	ptr = ft_strjoin(user, ">");
 	ptr = ft_strxjoin(ptr, pass, 1);
 	ptr = ft_strxjoin(ptr, "\n", 1);
+	close(fd);
 	if ((cred_check(ptr, buff)))
 		return (1);
 	return (0);
@@ -65,6 +66,7 @@ int		login_certification(char *user, char *pass)
 		fd = fopen("cert.ers", "w+");
 		current = time(NULL);
 		fprintf(fd, "$%s>%s\n%s", user, pass, asctime(gmtime(&current)));
+		fclose(fd);
 	}
 	else
 		ft_putstr("Invalid username/Pass\n");

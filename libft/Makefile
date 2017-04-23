@@ -127,6 +127,7 @@ SRCS = libft/ft_memset.c \
 	   libft/ft_strdel2d.c \
 	   libft/ft_strndup2d.c \
 	   libft/ft_strdelic.c \
+	   libft/ft_loaderl.c \
 
 HDIR =	./includes
 
