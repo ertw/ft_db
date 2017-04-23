@@ -14,6 +14,7 @@
 # define FT_DB_H
 # include "./libft/includes/libft.h"
 # include <fcntl.h>
+# include <stdio.h>
 # include <termios.h>
 
 typedef struct		s_parse
