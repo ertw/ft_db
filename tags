@@ -15,6 +15,7 @@ CFLAGS	Makefile	/^	CFLAGS = -Wall -Werror -Wextra -g$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Werror -Wextra -g -fno-omit-frame-pointer -fsanitize=address$/;"	m
 C_DATA	file_array.c	/^#define C_DATA(/;"	d	file:
 ERR_NO_SPACE	file_array.c	/^#define ERR_NO_SPACE /;"	d	file:
+FT_DB_H	ft_db.h	/^# define FT_DB_H$/;"	d
 HDIR	libft/Makefile	/^HDIR =	.\/includes$/;"	m
 HEADERS	Makefile	/^HEADERS = ft_db.h$/;"	m
 LIBFT_H	libft/includes/libft.h	/^# define LIBFT_H$/;"	d
@@ -23,25 +24,31 @@ MAX_FD	libft/includes/libft.h	/^# define MAX_FD /;"	d
 NAME	Makefile	/^NAME = ft_db$/;"	m
 NAME	libft/Makefile	/^NAME = libftprintf.a$/;"	m
 NUM_ROWS	file_array.c	/^#define NUM_ROWS /;"	d	file:
-OBJECTS	Makefile	/^OBJECTS = ft_db.o$/;"	m
+OBJECTS	Makefile	/^OBJECTS = ft_db.o user_login.o$/;"	m
 OBJS	libft/Makefile	/^OBJS =	$(subst .c,.o,$(SRCS))$/;"	m
 RM	libft/Makefile	/^RM = @rm -f$/;"	m
 SRCS	libft/Makefile	/^SRCS = libft\/ft_memset.c \\$/;"	m
-age	ft_db.h	/^	int		age;$/;"	m	struct:s_data	typeref:typename:int
+age	ft_db.h	/^	int				age;$/;"	m	struct:s_data	typeref:typename:int
 all	Makefile	/^all: information $(NAME)$/;"	t
 all	libft/Makefile	/^all: $(NAME)$/;"	t
 arg	libft/includes/libft.h	/^	va_list			arg;$/;"	m	struct:s_print	typeref:typename:va_list
 big	libft/printf/ft_hex.c	/^static void	big(t_print *all, char c)$/;"	f	typeref:typename:void	file:
+cert_check	ft_db.c	/^void	cert_check(t_parse *meta)$/;"	f	typeref:typename:void
+cert_present	ft_db.h	/^	int				cert_present;$/;"	m	struct:s_parse	typeref:typename:int
 ch	libft/includes/libft.h	/^	char			ch;$/;"	m	struct:s_print	typeref:typename:char
 clean	Makefile	/^clean:$/;"	t
 clean	libft/Makefile	/^clean:$/;"	t
 content	libft/includes/libft.h	/^	void			*content;$/;"	m	struct:s_list	typeref:typename:void *
 content_size	libft/includes/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list	typeref:typename:size_t
 create_ret	libft/get_next_line/get_next_line.c	/^void	create_ret(t_n *a, char **line)$/;"	f	typeref:typename:void
-cred_check	ft_db.c	/^int	cred_check(char *ptr, char *buff)$/;"	f	typeref:typename:int
+cred_check	user_login.c	/^int		cred_check(char *ptr, char *buff)$/;"	f	typeref:typename:int
 database_read	file_array.c	/^t_list		*database_read(FILE *file)$/;"	f	typeref:typename:t_list *
+database_read	parser.c	/^t_list		*database_read(FILE *file)$/;"	f	typeref:typename:t_list *
 decimal	libft/printf/ft_decimal.c	/^void	decimal(t_print *all)$/;"	f	typeref:typename:void
+dispatch_manager	ft_db.c	/^void	dispatch_manager(t_parse *meta)$/;"	f	typeref:typename:void
 do_it_now	libft/printf/ft_parse.c	/^void		do_it_now(t_print *all)$/;"	f	typeref:typename:void
+e_types	parser.c	/^enum e_types {t_paren, t_string};$/;"	g	file:
+entry	parser.c	/^	char		*entry;$/;"	m	struct:s_entry	typeref:typename:char *	file:
 fclean	Makefile	/^fclean: clean$/;"	t
 fclean	libft/Makefile	/^fclean: clean$/;"	t
 fin	libft/includes/libft.h	/^	int				fin;$/;"	m	struct:s_n	typeref:typename:int
@@ -160,7 +167,7 @@ get_int	libft/printf/ft_get_stuff.c	/^void		get_int(t_print *all, va_list arg)$/
 get_luint	libft/printf/ft_get_stuff.c	/^void		get_luint(t_print *all, va_list arg)$/;"	f	typeref:typename:void
 get_next_line	libft/get_next_line/get_next_line.c	/^int		get_next_line(const int fd, char **line)$/;"	f	typeref:typename:int
 get_uint	libft/printf/ft_get_stuff.c	/^void		get_uint(t_print *all, va_list arg)$/;"	f	typeref:typename:void
-handle_login	ft_db.c	/^int	handle_login(char **argv)$/;"	f	typeref:typename:int
+handle_login	user_login.c	/^int		handle_login(char *user, char *pass)$/;"	f	typeref:typename:int
 hex	libft/printf/ft_hex.c	/^void		hex(t_print *all)$/;"	f	typeref:typename:void
 increment	libft/printf/ft_putbs.c	/^static int	increment(t_print *all, char *str, int i)$/;"	f	typeref:typename:int	file:
 information	Makefile	/^information:$/;"	t
@@ -172,6 +179,7 @@ last	libft/printf/ft_hex.c	/^static void	last(t_print *all)$/;"	f	typeref:typena
 left_align	libft/printf/ft_format_simple.c	/^t_print	*left_align(t_print *all)$/;"	f	typeref:typename:t_print *
 length	libft/includes/libft.h	/^	char			*length;$/;"	m	struct:s_print	typeref:typename:char *
 length	libft/printf/ft_flags.c	/^int	length(t_print *all, char *f)$/;"	f	typeref:typename:int
+login_certification	user_login.c	/^int		login_certification(char *user, char *pass)$/;"	f	typeref:typename:int
 lower_c	libft/printf/ft_retrieve.c	/^static void	lower_c(t_print *all, va_list arg)$/;"	f	typeref:typename:void	file:
 lower_s	libft/printf/ft_retrieve.c	/^static void	lower_s(t_print *all, va_list arg)$/;"	f	typeref:typename:void	file:
 lst_del_data	file_array.c	/^void			lst_del_data(void *content, size_t sizeofcontent)$/;"	f	typeref:typename:void
@@ -179,14 +187,17 @@ lst_node_print	file_array.c	/^void			lst_node_print(t_list *node)$/;"	f	typeref:
 main	file_array.c	/^int		main(void)$/;"	f	typeref:typename:int
 main	ft_db.c	/^int		main(int argc, char **argv)$/;"	f	typeref:typename:int
 main	libft/printf/main.c	/^int		main(int argc, char **argv)$/;"	f	typeref:typename:int
+main	parser.c	/^int		main(void)$/;"	f	typeref:typename:int
 mode	Makefile	/^	mode = debug$/;"	m
-name	ft_db.h	/^	char		name[128];$/;"	m	struct:s_data	typeref:typename:char[128]
+name	ft_db.h	/^	char			name[128];$/;"	m	struct:s_data	typeref:typename:char[128]
 next	libft/includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 norm	libft/printf/ft_oct.c	/^static void	norm(t_print *all, char c)$/;"	f	typeref:typename:void	file:
 oct	libft/printf/ft_oct.c	/^void		oct(t_print *all)$/;"	f	typeref:typename:void
 one	libft/printf/ft_hex.c	/^static void	one(t_print *all, char c)$/;"	f	typeref:typename:void	file:
+opt_l	ft_db.h	/^	int				opt_l;$/;"	m	struct:s_parse	typeref:typename:int
 pad	libft/includes/libft.h	/^	int				pad;$/;"	m	struct:s_print	typeref:typename:int
 parse	libft/printf/ft_parse.c	/^void		parse(t_print *all, char *f)$/;"	f	typeref:typename:void
+parse_args	ft_db.c	/^void	parse_args(int argc, char **argv, t_parse *meta)$/;"	f	typeref:typename:void
 percent_found	libft/printf/ft_percent_found.c	/^int	percent_found(t_print *all, char *f)$/;"	f	typeref:typename:int
 precision	libft/includes/libft.h	/^	int				precision;$/;"	m	struct:s_print	typeref:typename:int
 precision	libft/printf/ft_flags.c	/^int	precision(t_print *all, char *f)$/;"	f	typeref:typename:int
@@ -203,8 +214,10 @@ ret	libft/includes/libft.h	/^	int				ret;$/;"	m	struct:s_print	typeref:typename:
 retrieve	libft/printf/ft_retrieve.c	/^void		retrieve(t_print *all, va_list arg, char c)$/;"	f	typeref:typename:void
 right_align	libft/printf/ft_right_align.c	/^t_print			*right_align(t_print *all)$/;"	f	typeref:typename:t_print *
 s_data	ft_db.h	/^typedef struct		s_data$/;"	s
+s_entry	parser.c	/^typedef struct		s_entry$/;"	s	file:
 s_list	libft/includes/libft.h	/^typedef struct		s_list$/;"	s
 s_n	libft/includes/libft.h	/^typedef struct		s_n$/;"	s
+s_parse	ft_db.h	/^typedef struct		s_parse$/;"	s
 s_print	libft/includes/libft.h	/^typedef struct		s_print$/;"	s
 second	libft/printf/ft_oct.c	/^static int	second(t_print *all, char c)$/;"	f	typeref:typename:int	file:
 sign	libft/includes/libft.h	/^	char			sign;$/;"	m	struct:s_print	typeref:typename:char
@@ -214,10 +227,17 @@ specifier	libft/printf/ft_flags.c	/^int	specifier(t_print *all, char c)$/;"	f	ty
 start	libft/printf/ft_colors.c	/^static int	start(char *f, int c)$/;"	f	typeref:typename:int	file:
 str	libft/includes/libft.h	/^	char			*str;$/;"	m	struct:s_n	typeref:typename:char *
 string	libft/printf/ft_format_simple.c	/^void	string(t_print *all)$/;"	f	typeref:typename:void
-t_data	ft_db.h	/^}			t_data;$/;"	t	typeref:struct:s_data
+t_data	ft_db.h	/^}					t_data;$/;"	t	typeref:struct:s_data
+t_entry	parser.c	/^}			t_entry;$/;"	t	typeref:struct:s_entry	file:
 t_list	libft/includes/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
 t_n	libft/includes/libft.h	/^}					t_n;$/;"	t	typeref:struct:s_n
+t_paren	parser.c	/^enum e_types {t_paren, t_string};$/;"	e	enum:e_types	file:
+t_parse	ft_db.h	/^}					t_parse;$/;"	t	typeref:struct:s_parse
 t_print	libft/includes/libft.h	/^}					t_print;$/;"	t	typeref:struct:s_print
+t_string	parser.c	/^enum e_types {t_paren, t_string};$/;"	e	enum:e_types	file:
+tokenize	parser.c	/^t_list		*tokenize(char *str)$/;"	f	typeref:typename:t_list *
+type	parser.c	/^	char		type[16];$/;"	m	struct:s_entry	typeref:typename:char[16]	file:
+user_login	user_login.c	/^void	user_login(t_parse *meta)$/;"	f	typeref:typename:void
 w_string	libft/printf/ft_format_simple.c	/^void	w_string(t_print *all)$/;"	f	typeref:typename:void
 width	libft/includes/libft.h	/^	int				width;$/;"	m	struct:s_print	typeref:typename:int
 width	libft/printf/ft_flags.c	/^int	width(t_print *all, char *f)$/;"	f	typeref:typename:int
