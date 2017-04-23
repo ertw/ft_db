@@ -68,9 +68,9 @@ int		main(int argc, char **argv)
 		ft_putstr("usage: EZ-DB [-l] [...]\n");
 	else
 		parse_args(argc, argv, &meta);
-	if (meta.cert_present == 0)
+	if (meta.cert_present == 0 && argc > 1)
 		user_login(&meta);
-	else
+	if (meta.cert_present == 1 && argc > 1)
 		dispatch_manager(&meta, argv);
 	return (0);
 }

@@ -21,6 +21,8 @@
 # include <locale.h>
 # include <limits.h>
 # include <inttypes.h>
+# include <stdio.h>
+# include <time.h>
 # define BUFF_SIZE 42
 # define MAX_FD 20
 

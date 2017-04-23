@@ -78,18 +78,15 @@ char	***fill_db(t_parse *meta, char *source)
 	meta->x = 0;
 	x = 0;
 	y = 0;
-	while (!feof(meta->fd))
+	while (x < meta->rows)
 	{
-		while (y < meta->columns)
-		{
-			fscanf(meta->fd, "%s", meta->data);
-			db[y][x] = ft_strdup(meta->data);
-			y++;
-		}
-		x++;
-		if (x > meta->rows)
-			break ;
-		y = 0;
+		fscanf(meta->fd, "%s", meta->data);
+		db[y][x] = ft_strdup(meta->data);
+		y++;
+		if (y % meta->columns == 0 && y != 0)
+			x++;
+		if (y >= meta->columns)
+			y = 0;
 	}
 	fclose(meta->fd);
 	return (db);
@@ -97,13 +94,23 @@ char	***fill_db(t_parse *meta, char *source)
 
 void	display_db(t_parse *meta, char ***db)
 {
-	int	row;
+	int	x;
+	int	y;
 
-	row = 0;
-	while (row < meta->rows)
+	x = 0;
+	y = 0;
+	printf("%s %s %s %s\n", db[0][0], db[0][1], db[0][2], db[0][3]);
+	printf("%s %s %s %s\n", db[1][0], db[1][1], db[1][2], db[1][3]);
+	while (x < meta->rows)
 	{
-		printf("%d| %s | %s |\n", row, db[0][row], db[1][row]);
-		row++;
+		while (y < meta->columns)
+		{
+			printf("| %s ", db[y][x]);
+			y++;
+		}
+		ft_putstr("|\n");
+		y = 0;
+		x++;
 	}
 }
 
