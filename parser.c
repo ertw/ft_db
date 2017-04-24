@@ -41,6 +41,10 @@ t_list		*tokenize(char *str)
 	return (node);
 }
 
+void		serialize(void)
+{
+}
+
 t_list		*database_read(FILE *file)
 {
 	t_data		data;
