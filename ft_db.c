@@ -58,12 +58,12 @@ void	dispatch_manager(t_parse *meta, char **argv)
 	if (meta->opt_a == 1)
 	{
 		ft_printf("Option ->[.green.a.]<-\n");
-		add_array_field(meta, argv);
+		add_array_column(meta, argv);
 	}
 	else if (meta->opt_r == 1)
 	{
 		ft_printf("Option ->[.red.r.]<-\n");
-		remove_array_field(meta, argv);
+		remove_array_column(meta, argv);
 	}
 	else if (meta->opt_l == 1)
 		display_array_db(meta, argv);

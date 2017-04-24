@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_array_field.c                               :+:      :+:    :+:   */
+/*   remove_array_column.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschramm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_db.h"
 
-char	***remove_field(t_parse *meta, char ***db, char *old_field)
+char	***remove_column(t_parse *meta, char ***db, char *old_field)
 {
 	char	***new;
 	int		x;
@@ -43,7 +43,7 @@ char	***remove_field(t_parse *meta, char ***db, char *old_field)
 	return (new);
 }
 
-void	remove_array_field(t_parse *meta, char **argv)
+void	remove_array_column(t_parse *meta, char **argv)
 {
 	char	***db;
 	char	***new;
@@ -55,7 +55,7 @@ void	remove_array_field(t_parse *meta, char **argv)
 		{
 			ft_printf("[.red.%s.]\n", argv[3]);
 			db = get_db(meta, argv);
-			new = remove_field(meta, db, argv[3]);
+			new = remove_column(meta, db, argv[3]);
 			meta->columns--;
 			if (meta->opt_l == 1)
 				display_db(meta, new, argv[2]);
@@ -64,8 +64,8 @@ void	remove_array_field(t_parse *meta, char **argv)
 			delete_db(new);
 		}
 		else
-			ft_printf("[.red.Need argument.]\n");
+			ft_printf("Need argument (column number)\n");
 	}
 	else
-		ft_printf("[.red.File error.]\n");
+		ft_printf("File error.]\n");
 }

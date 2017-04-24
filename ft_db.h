@@ -37,14 +37,14 @@ typedef struct		s_data
 }					t_data;
 
 void				user_login(t_parse *meta);
-void				add_array_field(t_parse *meta, char **argv);
+void				add_array_column(t_parse *meta, char **argv);
 void				display_array_db(t_parse *meta, char **argv);
 int					count_columns(t_parse *meta, char *source);
 int					count_rows(char *source);
 char				***fill_db(t_parse *meta, char *source);
 void				display_db(t_parse *meta, char ***db, char *name);
 void				delete_db(char ***db);
-void				remove_array_field(t_parse *meta, char **argv);
+void				remove_array_column(t_parse *meta, char **argv);
 char				***get_db(t_parse *meta, char **argv);
 void				update_db(t_parse *meta, char ***db, char *file_name);
 

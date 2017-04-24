@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_array_field                                    :+:      :+:    :+:   */
+/*   add_array_column.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschramm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -108,7 +108,7 @@ void	update_db(t_parse *meta, char ***db, char *file_name)
 
 }
 
-void	add_array_field(t_parse *meta, char **argv)
+void	add_array_column(t_parse *meta, char **argv)
 {
 	char	***db;
 	char	***new;
