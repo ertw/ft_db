@@ -53,6 +53,11 @@ int		count_rows(char *source)
 char	***make_empty(t_parse *meta)
 {
 	char	***db;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
 
 	db = (char***)ft_memalloc(sizeof(char**) * (meta->columns + 1));
 	db[meta->columns] = 0;
@@ -63,7 +68,6 @@ char	***make_empty(t_parse *meta)
 		db[meta->x][meta->rows] = 0;
 		meta->x++;
 	}
-	db[meta->columns] = 0;
 	return (db);
 }
 
@@ -99,13 +103,11 @@ void	display_db(t_parse *meta, char ***db)
 
 	x = 0;
 	y = 0;
-	printf("%s %s %s %s\n", db[0][0], db[0][1], db[0][2], db[0][3]);
-	printf("%s %s %s %s\n", db[1][0], db[1][1], db[1][2], db[1][3]);
 	while (x < meta->rows)
 	{
 		while (y < meta->columns)
 		{
-			printf("| %s ", db[y][x]);
+			ft_printf("| %s ", db[y][x]);
 			y++;
 		}
 		ft_putstr("|\n");
@@ -127,6 +129,7 @@ void	display_array_db(t_parse *meta, char **argv)
 			meta->columns = count_columns(meta, argv[2]);
 			db = fill_db(meta, argv[2]);
 			display_db(meta, db);
+			delete_db(db);
 		}
 	}
 	else

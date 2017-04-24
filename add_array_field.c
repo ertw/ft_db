@@ -15,21 +15,24 @@
 void	delete_db(char ***db)
 {
 	int x;
-	int	y;
+	int y;
 
 	x = 0;
 	y = 0;
-	while (db[y] != 0)
+	while (db[y])
 	{
-		while (db[y][x] != 0)
+		while (db[y][x])
 		{
 			ft_strdel(&db[y][x]);
 			x++;
 		}
 		ft_strdel(&db[y][x]);
+		ft_memdel((void*)&db[y]);
 		x = 0;
 		y++;
 	}
+	ft_memdel((void*)&db[y]);
+	ft_memdel((void*)&db);
 }
 
 char	***get_db(t_parse *meta, char **argv)

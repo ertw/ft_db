@@ -42,5 +42,6 @@ int					count_columns(t_parse *meta, char *source);
 int					count_rows(char *source);
 char				***fill_db(t_parse *meta, char *source);
 void				display_db(t_parse *meta, char ***db);
+void				delete_db(char ***db);
 
 #endif
