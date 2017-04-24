@@ -23,6 +23,7 @@ typedef struct		s_parse
 	FILE			*fd;
 	int				opt_l;
 	int				opt_a;
+	int				opt_r;
 	int				columns;
 	int				rows;
 	int				cert_present;
@@ -41,7 +42,10 @@ void				display_array_db(t_parse *meta, char **argv);
 int					count_columns(t_parse *meta, char *source);
 int					count_rows(char *source);
 char				***fill_db(t_parse *meta, char *source);
-void				display_db(t_parse *meta, char ***db);
+void				display_db(t_parse *meta, char ***db, char *name);
 void				delete_db(char ***db);
+void				remove_array_field(t_parse *meta, char **argv);
+char				***get_db(t_parse *meta, char **argv);
+void				update_db(t_parse *meta, char ***db, char *file_name);
 
 #endif

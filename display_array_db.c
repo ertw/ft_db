@@ -87,30 +87,81 @@ char	***fill_db(t_parse *meta, char *source)
 		fscanf(meta->fd, "%s", meta->data);
 		db[y][x] = ft_strdup(meta->data);
 		y++;
-		if (y % meta->columns == 0 && y != 0)
+		if (y == meta->columns)
+		{
 			x++;
-		if (y >= meta->columns)
 			y = 0;
+		}
 	}
 	fclose(meta->fd);
 	return (db);
 }
 
-void	display_db(t_parse *meta, char ***db)
+int		get_pad(char ***db)
+{
+	int x;
+	int	y;
+	int	test;
+	int pad;
+
+	x = 0;
+	y = 0;
+	pad = 0;
+	while (db[y])
+	{
+		while (db[y][x])
+		{
+			if ((test = ft_strlen(db[y][x])) > pad)
+				pad = test;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	return (pad);
+}
+
+void	print_format_line(t_parse *meta, int pad)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
+	while (x < meta->columns)
+	{
+		while (y < pad + 3)
+		{
+			ft_putchar('-');
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+	ft_putchar('-');
+	ft_putchar('\n');
+}
+
+void	display_db(t_parse *meta, char ***db, char *name)
+{
+	int	x;
+	int	y;
+	int	pad;
+
+	x = 0;
+	y = 0;
+	pad = get_pad(db);
+	ft_printf("[.cyan.Display DB.] - [.cyan.%s.]\n", name);
+	print_format_line(meta, pad);
 	while (x < meta->rows)
 	{
 		while (y < meta->columns)
 		{
-			ft_printf("| %s ", db[y][x]);
+			ft_printf("| %*s ", pad, db[y][x]);
 			y++;
 		}
 		ft_putstr("|\n");
+		print_format_line(meta, pad);
 		y = 0;
 		x++;
 	}
@@ -124,11 +175,11 @@ void	display_array_db(t_parse *meta, char **argv)
 	{
 		if (meta->opt_l == 1)
 		{
-			ft_putstr("Mode: Array\n");
+			ft_printf("Option ->[.cyan.l.]<-\n");
 			meta->rows = count_rows(argv[2]);
 			meta->columns = count_columns(meta, argv[2]);
 			db = fill_db(meta, argv[2]);
-			display_db(meta, db);
+			display_db(meta, db, argv[2]);
 			delete_db(db);
 		}
 	}
