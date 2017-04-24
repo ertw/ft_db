@@ -38,6 +38,7 @@ t_list		*tokenize(char *str)
 			node->next = tokenize(close_paren);
 		}
 	}
+	return (node);
 }
 
 t_list		*database_read(FILE *file)

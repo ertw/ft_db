@@ -131,9 +131,6 @@ SRCS = libft/ft_memset.c \
 
 HDIR =	./includes
 
-%.o: %.c
-	cc $(CFLAGS) -I$(HDIR) -c -o $@ $< -g
-
 OBJS =	$(subst .c,.o,$(SRCS))
 
 RM = @rm -f
