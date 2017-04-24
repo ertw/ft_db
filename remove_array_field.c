@@ -50,7 +50,7 @@ void	remove_array_field(t_parse *meta, char **argv)
 
 	if ((access(argv[2], F_OK)) != -1)
 	{
-		ft_printf("[red.Remove Field.] - ");
+		ft_printf("[.red.Remove Field.] - ");
 		if (argv[3])
 		{
 			ft_printf("[.red.%s.]\n", argv[3]);
