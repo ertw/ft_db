@@ -30,7 +30,7 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 {
 	int	c;
 
-	while ((c = getopt(argc, argv, "-alr")) != -1)
+	while ((c = getopt(argc, argv, "-acrlmx")) != -1)
 	{
 		if (c == 'l')
 			meta->opt_l = 1;
@@ -38,10 +38,16 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 			meta->opt_a = 1;
 		else if (c == 'r')
 			meta->opt_r = 1;
+		else if (c == 'x')
+			meta->opt_x = 1;
+		else if (c == 'c')
+			meta->opt_c = 1;
+		else if (c == 'm')
+			meta->opt_m = 1;
 		else
 		{
 			ft_printf("[.blue.EZ-DB.]: %c : [.red.invalid option.].\n", c);
-			ft_printf("usage: [.blue.EZ-DB.] [-al] [...]\n");
+			ft_printf("usage: [.blue.EZ-DB.] [-acrlx] [...]\n");
 			break ;
 		}
 	}
@@ -50,20 +56,36 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 
 void	dispatch_manager(t_parse *meta, char **argv)
 {
-	if (meta->opt_a == 1 && meta->opt_r == 1)
+	if (meta->opt_c == 1 && meta->opt_r == 1)
 	{
-		ft_printf("[.blue.EZ-DB.]: Invalid Simultaneous Options: -lr.\n");
+		ft_printf("[.blue.EZ-DB.]: Invalid Simultaneous Options: -cr.\n");
+		return ;
+	}
+	else if (meta->opt_a == 1 && meta->opt_x == 1)
+	{
+		ft_printf("[.blue.EZ-DB.]: Invalid Simultaneous Options: -ax.\n");
 		return ;
 	}
 	if (meta->opt_a == 1)
 	{
-		ft_printf("Option ->[.green.a.]<-\n");
-		add_array_column(meta, argv);
+		ft_printf("Option: [.green.Add.]\n");
+		if (meta->opt_c == 1)
+			add_array_column(meta, argv);
+		else if (meta->opt_r == 1)
+			add_array_row(meta, argv);
 	}
-	else if (meta->opt_r == 1)
+	else if (meta->opt_x == 1)
 	{
-		ft_printf("Option ->[.red.r.]<-\n");
-		remove_array_column(meta, argv);
+		ft_printf("Option: [.red.Remove.]\n");
+		if (meta->opt_c == 1)
+			remove_array_column(meta, argv);
+		else if (meta->opt_r == 1)
+			remove_array_row(meta, argv);
+	}
+	else if (meta->opt_m == 1)
+	{
+		ft_printf("Option: [.yellow.Modify.]\n");
+		modify_array_cell(meta, argv);
 	}
 	else if (meta->opt_l == 1)
 		display_array_db(meta, argv);
@@ -74,7 +96,7 @@ int		main(int argc, char **argv)
 	t_parse meta;
 
 	if (argc == 1)
-		ft_putstr("usage: [.blue.EZ-DB.] [-alr] [...]\n");
+		ft_putstr("usage: [.blue.EZ-DB.] [-alrm] [...]\n");
 	else
 		parse_args(argc, argv, &meta);
 	if (meta.cert_present == 0 && argc > 1)

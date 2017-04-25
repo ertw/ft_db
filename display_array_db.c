@@ -12,20 +12,21 @@
 
 #include "ft_db.h"
 
-int		count_columns(t_parse *meta, char *source)
+int		count_columns(char *source)
 {
 	char	*line;
 	char	**split;
 	int		fd;
+	int		x;
 
+	x = 0;
 	fd = open(source, O_RDONLY);
 	get_next_line(fd, &line);
 	split = ft_strsplit(line, ' ');
-	meta->x = 0;
-	while (split[meta->x])
-		meta->x++;
+	while (split[x])
+		x++;
 	close(fd);
-	return (meta->x);
+	return (x);
 }
 
 int		count_rows(char *source)
@@ -55,18 +56,18 @@ char	***make_empty(t_parse *meta)
 	char	***db;
 	int		x;
 	int		y;
+	int		z;
 
 	x = 0;
 	y = 0;
-
 	db = (char***)ft_memalloc(sizeof(char**) * (meta->columns + 1));
 	db[meta->columns] = 0;
-	meta->x = 0;
-	while (meta->x < meta->columns)
+	z = 0;
+	while (z < meta->columns)
 	{
-		db[meta->x] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
-		db[meta->x][meta->rows] = 0;
-		meta->x++;
+		db[z] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
+		db[z][meta->rows] = 0;
+		z++;
 	}
 	return (db);
 }
@@ -79,7 +80,6 @@ char	***fill_db(t_parse *meta, char *source)
 
 	db = make_empty(meta);
 	meta->fd = fopen(source, "r");
-	meta->x = 0;
 	x = 0;
 	y = 0;
 	while (x < meta->rows)
@@ -175,9 +175,9 @@ void	display_array_db(t_parse *meta, char **argv)
 	{
 		if (meta->opt_l == 1)
 		{
-			ft_printf("Option ->[.cyan.l.]<-\n");
+			ft_printf("Option: [.cyan.l.]\n");
 			meta->rows = count_rows(argv[2]);
-			meta->columns = count_columns(meta, argv[2]);
+			meta->columns = count_columns(argv[2]);
 			db = fill_db(meta, argv[2]);
 			display_db(meta, db, argv[2]);
 			delete_db(db);

@@ -26,7 +26,7 @@ char	***remove_column(t_parse *meta, char ***db, char *old_field)
 	z = 0;
 	while (y < meta->columns)
 	{
-		if (y != atoi(old_field) - 1)
+		if (y != atoi(old_field))
 		{
 			new[z] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
 			new[z][meta->rows] = 0;
@@ -43,6 +43,18 @@ char	***remove_column(t_parse *meta, char ***db, char *old_field)
 	return (new);
 }
 
+int 	validate_column(t_parse *meta, char	*input)
+{
+	int 	x;
+
+	x = ft_atoi(input);
+	if (x < 0 || x > meta->columns - 1)
+		return (0);
+	else if (meta->columns == 1)
+		ft_putstr("Must have at least 1 column\n");
+	return (1);
+}
+
 void	remove_array_column(t_parse *meta, char **argv)
 {
 	char	***db;
@@ -51,7 +63,8 @@ void	remove_array_column(t_parse *meta, char **argv)
 	if ((access(argv[2], F_OK)) != -1)
 	{
 		ft_printf("[.red.Remove Field.] - ");
-		if (argv[3])
+		meta->columns = count_columns(argv[2]);
+		if (validate_column(meta, argv[3]))
 		{
 			ft_printf("[.red.%s.]\n", argv[3]);
 			db = get_db(meta, argv);
