@@ -73,7 +73,7 @@ void	remove_array_row(t_parse *meta, char **argv)
 		if (validate_rows(meta, argv[3]))
 		{
 			ft_printf("[.red.%s.]\n", argv[3]);
-			db = get_db(meta, argv);
+			db = get_db(meta, argv[2]);
 			new = remove_row(meta, db, argv[3]);
 			meta->rows--;
 			if (meta->opt_l == 1)

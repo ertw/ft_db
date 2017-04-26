@@ -71,7 +71,7 @@ void	modify_array_cell(t_parse *meta, char **argv)
 			validate_row_column(meta, argv))
 		{
 			ft_printf("[.yellow.%s.]\n", argv[5]);
-			db = get_db(meta, argv);
+			db = get_db(meta, argv[2]);
 			new = modify_cell(meta, db, argv);
 			if (meta->opt_l == 1)
 				display_db(meta, new, argv[2]);

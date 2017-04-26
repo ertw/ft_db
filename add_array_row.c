@@ -51,7 +51,7 @@ void	add_array_row(t_parse *meta, char **argv)
 		if (argv[3])
 		{
 			ft_printf("[.green.%s.]\n", argv[3]);
-			db = get_db(meta, argv);
+			db = get_db(meta, argv[2]);
 			new = add_row(meta, db, argv[3]);
 			meta->rows++;
 			if (meta->opt_l == 1)

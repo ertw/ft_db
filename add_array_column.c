@@ -40,13 +40,13 @@ void	delete_db(char ***db)
 		ft_memdel((void*)&db);
 }
 
-char	***get_db(t_parse *meta, char **argv)
+char	***get_db(t_parse *meta, char *source)
 {
 	char	***db;
 
-	meta->rows = count_rows(argv[2]);
-	meta->columns = count_columns(argv[2]);
-	db = fill_db(meta, argv[2]);
+	meta->rows = count_rows(source);
+	meta->columns = count_columns(source);
+	db = fill_db(meta, source);
 	return (db);
 }
 
@@ -119,7 +119,7 @@ void	add_array_column(t_parse *meta, char **argv)
 		if (argv[3])
 		{
 			ft_printf("[.green.%s.]\n", argv[3]);
-			db = get_db(meta, argv);
+			db = get_db(meta, argv[2]);
 			new = add_column(meta, db, argv[3]);
 			meta->columns++;
 			if (meta->opt_l == 1)

@@ -27,6 +27,7 @@ typedef struct		s_parse
 	int				opt_c;
 	int				opt_x;
 	int				opt_m;
+	int				opt_d;
 	int				columns;
 	int				rows;
 	int				cert_present;
@@ -49,10 +50,12 @@ char				***fill_db(t_parse *meta, char *source);
 void				display_db(t_parse *meta, char ***db, char *name);
 void				delete_db(char ***db);
 void				remove_array_column(t_parse *meta, char **argv);
-char				***get_db(t_parse *meta, char **argv);
+char				***get_db(t_parse *meta, char *source);
 void				update_db(t_parse *meta, char ***db, char *file_name);
 void				add_array_row(t_parse *meta, char **argv);
 void				remove_array_row(t_parse *meta, char **argv);
 void				modify_array_cell(t_parse *meta, char **argv);
+void				dispatch_manager(t_parse *meta, char **argv);
+void				db_manager(t_parse *meta);
 
 #endif

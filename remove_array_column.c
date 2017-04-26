@@ -67,7 +67,7 @@ void	remove_array_column(t_parse *meta, char **argv)
 		if (validate_column(meta, argv[3]))
 		{
 			ft_printf("[.red.%s.]\n", argv[3]);
-			db = get_db(meta, argv);
+			db = get_db(meta, argv[2]);
 			new = remove_column(meta, db, argv[3]);
 			meta->columns--;
 			if (meta->opt_l == 1)
