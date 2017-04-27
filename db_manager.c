@@ -26,12 +26,67 @@ void	ls_cwd(t_parse *meta)
 	pclose(meta->fd);
 }
 
+void	add_row_gui(t_parse *meta, char *source)
+{
+	char	buff[100] = "hihihihi";
+	char	***new;
+	char	***db;
+
+	printf("Please type in content for new cells\n");
+	printf("%s\n", source);
+	db = get_db(meta, source);
+	ft_putstr("hi\n");
+	new = add_row(meta, db, buff);
+	ft_putstr("finished add_row\n");
+	meta->rows++;
+	update_db(meta, new, source);
+	ft_putstr("finished update db\n");
+	delete_db(db);
+	delete_db(new);
+	db_manipulator(meta, source);
+}
+
+void	response_manager(t_parse *meta, char ***db, char *source, char *input)
+{
+	printf("%s\n", source);
+	if (input[0] == '1')
+		add_row_gui(meta, source);
+	//else if (selection[0] == '2')
+	//else if (selection[0] == '3')
+	//else if (selection[0] == '4')
+	//else if (selection[0] == '5')
+	else if (input[0] == '6')
+	{
+		display_db(meta, db, source);
+		db_manipulator(meta, source);
+	}
+	else if (input[0] == '7')
+		db_open(meta);
+	else if (input[0] == '0')
+		return ;
+}
+
 void	db_manipulator(t_parse *meta, char *source)
 {
 	char	***db;
+	char	buff[100];
 
+	printf("%s\n", source);
 	db = get_db(meta, source);
 	display_db(meta, db, source);
+	ft_printf("** EZ-DB Options **\n");
+	ft_printf("(1) [.green.Add.] [.cyan.row.]\n");
+	ft_printf("(2) [.green.Add.] [.magenta.column.]\n");
+	ft_printf("(3) [.yellow.Modify.] individual cell\n");
+	ft_printf("(4) [.red.Remove.] [.cyan.row.]\n");
+	ft_printf("(5) [.red.Remove.] [.magenta.column.]\n");
+	ft_printf("(6) [.blue.Reprint.] DB\n");
+	ft_printf("(7) Open a different DB\n");
+	ft_printf("(0) Quit\n");
+	ft_printf("Please make a selection\n");
+	scanf("%s", buff);
+	printf("%s", source);
+	response_manager(meta, db, source, buff);
 	delete_db(db);
 }
 
@@ -44,6 +99,7 @@ void	db_open(t_parse *meta)
 	if ((access(meta->data, F_OK)) != -1)
 	{
 		ft_printf("Access [.green.Granted.]\n");
+		printf("%s\n", meta->data);
 		db_manipulator(meta, meta->data);
 	}
 	else

@@ -12,7 +12,7 @@
 
 #include "ft_db.h"
 
-char	***add_row(t_parse *meta, char ***db, char *new_row)
+char	***add_row(t_parse *meta, char ***db, char *content)
 {
 	char	***new;
 	int		x;
@@ -31,7 +31,7 @@ char	***add_row(t_parse *meta, char ***db, char *new_row)
 			new[y][x] = ft_strdup(db[y][x]);
 			x++;
 		}
-		new[y][x] = ft_strdup(new_row);
+		new[y][x] = ft_strdup(content);
 		x++;
 		new[y][x] = 0;
 		x = 0;
