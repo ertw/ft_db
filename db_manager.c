@@ -21,6 +21,7 @@ void	ls_cwd(t_parse *meta)
 	cwd = getcwd(buff, 100);
 	path = ft_strjoin("/bin/ls ", cwd);
 	meta->fd = popen(path, "r");
+	ft_strdel(&path);
 	while (fgets(buff, sizeof(buff)-1, meta->fd) != NULL)
 		printf("%s", buff);
 	pclose(meta->fd);
