@@ -7,5 +7,5 @@ ft_db is a toy database implementation in C.
 
 ### Authors
 
- * [Robin Schramm](https://github.com/)
+ * [Robin Schramm](https://github.com/wobula)
  * [Erik Williamson](https://github.com/ertw/)
