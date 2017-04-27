@@ -45,7 +45,9 @@ void	add_row_gui(t_parse *meta, char *source)
 //	scanf("%s", buff);
 //	remove_array_row(meta, );
 //	db_manipulator(meta, source);
-//}
+void	add_column_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
 
 	printf("Please type in content for new column\n");
 	scanf("%s", buff);
