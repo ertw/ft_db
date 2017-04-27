@@ -22,7 +22,7 @@ void	ls_cwd(t_parse *meta)
 	path = ft_strjoin("/bin/ls ", cwd);
 	meta->fd = popen(path, "r");
 	ft_strdel(&path);
-	while (fgets(buff, sizeof(buff)-1, meta->fd) != NULL)
+	while (fgets(buff, sizeof(buff) - 1, meta->fd) != NULL)
 		printf("%s", buff);
 	pclose(meta->fd);
 }
@@ -51,7 +51,8 @@ void	remove_column_gui(t_parse *meta, char *source)
 {
 	char	buff[100];
 
-	printf("Please type in column number to remove [0 - %d]\n", meta->columns - 1);
+	printf("Please type in column number to remove [0 - %d]\n",
+			meta->columns - 1);
 	scanf("%s", buff);
 	remove_array_column(meta, source, buff);
 	db_manipulator(meta, source);
@@ -71,7 +72,7 @@ void	modify_cell_gui(t_parse *meta, char *source)
 {
 	char	x[100];
 	char	y[100];
-	char	content[100] = "lala";
+	char	content[100];
 	char	***db;
 	char	***new;
 
@@ -149,7 +150,8 @@ void	db_open(t_parse *meta)
 	}
 	else
 	{
-		ft_printf("Opps, something wrong with filename [.red.%s.]\n", meta->data);
+		ft_printf("Opps, something wrong with filename [.red.%s.]\n",
+				meta->data);
 		db_manager(meta);
 	}
 }
