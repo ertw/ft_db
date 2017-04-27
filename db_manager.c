@@ -59,7 +59,17 @@ void	remove_column_gui(t_parse *meta, char *source)
 {
 	char	buff[100];
 
-	printf("Please type in row number to remove\n");
+	printf("Please type in column number to remove [0 - %d]\n", meta->columns - 1);
+	scanf("%s", buff);
+	remove_array_column(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
+void	remove_row_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in row number to remove [0 - %d]\n", meta->rows - 1);
 	scanf("%s", buff);
 	remove_array_column(meta, source, buff);
 	db_manipulator(meta, source);
@@ -70,7 +80,8 @@ void	response_manager(t_parse *meta, char ***db, char *source, char *input)
 	printf("%s\n", source);
 	if (input[0] == '1')
 		add_row_gui(meta, source);
-	//else if (selection[0] == '2')
+	else if (input[0] == '2')
+		add_column_gui(meta, source);
 	//else if (selection[0] == '3')
 	//else if (selection[0] == '4')
 	else if (input[0] == '5')
