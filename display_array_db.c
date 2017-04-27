@@ -14,30 +14,36 @@
 
 int		count_columns(char *source)
 {
-	char	*line;
+	char	*line = NULL;
 	char	**split;
-	int		fd;
+	FILE		*file;
 	int		x;
+	size_t 		bufsize = 0;
+	int 		i = 0;
 
 	x = 0;
-	fd = open(source, O_RDONLY);
-	get_next_line(fd, &line);
+	file = fopen(source, "r");
+	getline(&line, &bufsize, file);
 	split = ft_strsplit(line, ' ');
 	while (split[x])
 		x++;
-	close(fd);
+	fclose(file);
+	ft_strdel(&line);
+	while (split[i])
+		ft_strdel(&split[i++]);
+	ft_memdel((void*)&split);
 	return (x);
 }
 
 int		count_rows(char *source)
 {
 	char	buff[1024];
-	int		fd;
+	FILE 		*file;
 	int		r;
 	int		rows;
 
-	fd = open(source, O_RDONLY);
-	r = read(fd, &buff, 1023);
+	file = fopen(source, "r");
+	r = fread(buff, 1, 1023, file);
 	buff[r] = '\0';
 	r = 0;
 	rows = 0;
@@ -48,7 +54,7 @@ int		count_rows(char *source)
 		r++;
 	}
 	rows++;
-	close(fd);
+	fclose(file);
 	return (rows);
 }
 
