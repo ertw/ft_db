@@ -12,12 +12,12 @@
 
 #include "ft_db.h"
 
-int		validate_row_column(t_parse *meta, char **argv)
+int		validate_row_column(t_parse *meta, char *source, char *x, char *y)
 {
-	meta->x = atoi(argv[3]);
-	meta->y = atoi(argv[4]);
-	meta->columns = count_columns(argv[2]);
-	meta->rows = count_rows(argv[2]);
+	meta->x = atoi(x);
+	meta->y = atoi(y);
+	meta->columns = count_columns(source);
+	meta->rows = count_rows(source);
 	if (meta->x > meta->rows - 1 || meta->x < 0)
 	{
 		printf("Invalid user input: %d: Row must be between 0 and %d\n", meta->x, meta->rows - 1);
@@ -31,7 +31,7 @@ int		validate_row_column(t_parse *meta, char **argv)
 	return (1);
 }
 
-char	***modify_cell(t_parse *meta, char ***db, char **argv)
+char	***modify_cell(t_parse *meta, char ***db, char *content)
 {
 	char	***new;
 	int 	x;
@@ -48,7 +48,7 @@ char	***modify_cell(t_parse *meta, char ***db, char **argv)
 		while (x < meta->rows)
 		{
 			if (meta->x == x && meta->y == y)
-				new[y][x] = ft_strdup(argv[5]);
+				new[y][x] = ft_strdup(content);
 			else
 				new[y][x] = ft_strdup(db[y][x]);
 			x++;
@@ -68,11 +68,11 @@ void	modify_array_cell(t_parse *meta, char **argv)
 	{
 		ft_printf("[.yellow.Modify Field.] - ");
 		if (argv[3] && argv[4] && argv[5] && 
-			validate_row_column(meta, argv))
+			validate_row_column(meta, argv[2], argv[3], argv[4]))
 		{
 			ft_printf("[.yellow.%s.]\n", argv[5]);
 			db = get_db(meta, argv[2]);
-			new = modify_cell(meta, db, argv);
+			new = modify_cell(meta, db, argv[3]);
 			if (meta->opt_l == 1)
 				display_db(meta, new, argv[2]);
 			update_db(meta, new, argv[2]);

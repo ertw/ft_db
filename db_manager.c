@@ -37,14 +37,6 @@ void	add_row_gui(t_parse *meta, char *source)
 	db_manipulator(meta, source);
 }
 
-//void	remove_row_gui(t_parse *meta, char ***db)
-//{
-//	char	buff[100];
-//
-//	printf("Please type in the row  number to remove, starting from 0.\n");
-//	scanf("%s", buff);
-//	remove_array_row(meta, );
-//	db_manipulator(meta, source);
 void	add_column_gui(t_parse *meta, char *source)
 {
 	char	buff[100];
@@ -71,7 +63,29 @@ void	remove_row_gui(t_parse *meta, char *source)
 
 	printf("Please type in row number to remove [0 - %d]\n", meta->rows - 1);
 	scanf("%s", buff);
-	remove_array_column(meta, source, buff);
+	remove_array_row(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
+void	modify_cell_gui(t_parse *meta, char *source)
+{
+	char	x[100];
+	char	y[100];
+	char	content[100] = "lala";
+	char	***db;
+	char	***new;
+
+	printf("Please type in a row number [0 - %d]\n", meta->rows - 1);
+	scanf("%s", x);
+	printf("Please type in a column number [0 - %d]\n", meta->columns - 1);
+	scanf("%s", y);
+	if (!(validate_row_column(meta, source, x, y)))
+		return ;
+	printf("Please type new content: ");
+	scanf("%s", content);
+	db = get_db(meta, source);
+	new = modify_cell(meta, db, content);
+	update_db(meta, new, source);
 	db_manipulator(meta, source);
 }
 
@@ -82,8 +96,10 @@ void	response_manager(t_parse *meta, char ***db, char *source, char *input)
 		add_row_gui(meta, source);
 	else if (input[0] == '2')
 		add_column_gui(meta, source);
-	//else if (selection[0] == '3')
-	//else if (selection[0] == '4')
+	else if (input[0] == '3')
+		modify_cell_gui(meta, source);
+	else if (input[0] == '4')
+		remove_row_gui(meta, source);
 	else if (input[0] == '5')
 		remove_column_gui(meta, source);
 	else if (input[0] == '6')
@@ -138,6 +154,22 @@ void	db_open(t_parse *meta)
 	}
 }
 
+void	db_new(t_parse *meta)
+{
+	char	new_file[100];
+
+	printf("Please type the name of your new DB\n");
+	scanf("%s", new_file);
+	if ((access(new_file, F_OK)) != -1)
+	{
+		ft_putstr("File name taken\n");
+		db_new(meta);
+	}
+	meta->fd = fopen(new_file, "w");
+	fprintf(meta->fd, "new new new\nnew new new\n");
+	db_open(meta);
+}
+
 void	db_manager(t_parse *meta)
 {
 	int	x;
@@ -145,11 +177,14 @@ void	db_manager(t_parse *meta)
 	x = 0;
 	printf("Welcome to EZ-DB manager.\n");
 	sleep(1);
-	ft_printf("(1) [.green.Open Existing DB.]\n");
+	ft_printf("(1) [.blue.Make a New DB.]\n");
+	ft_printf("(2) [.green.Open Existing DB.]\n");
 	ft_printf("(0) [.red.Exit.]\n");
 	scanf("%d", &x);
 	if (x == 0)
 		return ;
-	else if (x == 1)
+	else if (x == 2)
 		db_open(meta);
+	else if (x == 1)
+		db_new(meta);
 }
