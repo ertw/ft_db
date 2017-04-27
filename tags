@@ -26,7 +26,7 @@ OBJECTS	Makefile	/^OBJECTS = ft_db.o user_login.o display_array_db.o add_array_c
 OBJS	libft/Makefile	/^OBJS =	$(subst .c,.o,$(SRCS))$/;"	m
 RM	libft/Makefile	/^RM = @rm -f$/;"	m
 SRCS	libft/Makefile	/^SRCS = libft\/ft_memset.c \\$/;"	m
-add_array_column	add_array_column.c	/^void	add_array_column(t_parse *meta, char **argv)$/;"	f	typeref:typename:void
+add_array_column	add_array_column.c	/^void	add_array_column(t_parse *meta, char *source, char *content)$/;"	f	typeref:typename:void
 add_array_row	add_array_row.c	/^void	add_array_row(t_parse *meta, char *source, char *content)$/;"	f	typeref:typename:void
 add_column	add_array_column.c	/^char	***add_column(t_parse *meta, char ***db, char *new_field)$/;"	f	typeref:typename:char ***
 add_row	add_array_row.c	/^char	***add_row(t_parse *meta, char ***db, char *content)$/;"	f	typeref:typename:char ***
@@ -243,8 +243,8 @@ raw_w	libft/includes/libft.h	/^	wchar_t			*raw_w;$/;"	m	struct:s_print	typeref:t
 raw_x	libft/includes/libft.h	/^	intmax_t		raw_x;$/;"	m	struct:s_print	typeref:typename:intmax_t
 re	Makefile	/^re: fclean all$/;"	t
 re	libft/Makefile	/^re: fclean all$/;"	t
-remove_array_column	remove_array_column.c	/^void	remove_array_column(t_parse *meta, char **argv)$/;"	f	typeref:typename:void
-remove_array_row	remove_array_row.c	/^void	remove_array_row(t_parse *meta, char **argv)$/;"	f	typeref:typename:void
+remove_array_column	remove_array_column.c	/^void	remove_array_column(t_parse *meta, char *source, char *content)$/;"	f	typeref:typename:void
+remove_array_row	remove_array_row.c	/^void	remove_array_row(t_parse *meta, char *source, char *content)$/;"	f	typeref:typename:void
 remove_column	remove_array_column.c	/^char	***remove_column(t_parse *meta, char ***db, char *old_field)$/;"	f	typeref:typename:char ***
 remove_row	remove_array_row.c	/^char	***remove_row(t_parse *meta, char ***db, char *new_row)$/;"	f	typeref:typename:char ***
 reset_struct	libft/printf/ft_reset_struct.c	/^void		reset_struct(t_print *all)$/;"	f	typeref:typename:void
