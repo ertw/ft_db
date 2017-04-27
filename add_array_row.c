@@ -24,16 +24,14 @@ char	***add_row(t_parse *meta, char ***db, char *content)
 	new[meta->columns] = 0;
 	while (y < meta->columns)
 	{
-		new[y] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
-		new[y][meta->rows] = 0;
+		new[y] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 2));
+		new[y][meta->rows + 1] = 0;
 		while (x < meta->rows)
 		{
 			new[y][x] = ft_strdup(db[y][x]);
 			x++;
 		}
 		new[y][x] = ft_strdup(content);
-		x++;
-		new[y][x] = 0;
 		x = 0;
 		y++;
 	}

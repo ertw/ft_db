@@ -55,24 +55,24 @@ int 	validate_column(t_parse *meta, char	*input)
 	return (1);
 }
 
-void	remove_array_column(t_parse *meta, char **argv)
+void	remove_array_column(t_parse *meta, char *source, char *content)
 {
 	char	***db;
 	char	***new;
 
-	if ((access(argv[2], F_OK)) != -1)
+	if ((access(source, F_OK)) != -1)
 	{
 		ft_printf("[.red.Remove Field.] - ");
-		meta->columns = count_columns(argv[2]);
-		if (validate_column(meta, argv[3]))
+		meta->columns = count_columns(source);
+		if (validate_column(meta, content))
 		{
-			ft_printf("[.red.%s.]\n", argv[3]);
-			db = get_db(meta, argv[2]);
-			new = remove_column(meta, db, argv[3]);
+			ft_printf("[.red.%s.]\n", content);
+			db = get_db(meta, source);
+			new = remove_column(meta, db, content);
 			meta->columns--;
 			if (meta->opt_l == 1)
-				display_db(meta, new, argv[2]);
-			update_db(meta, new, argv[2]);
+				display_db(meta, new, source);
+			update_db(meta, new, source);
 			delete_db(db);
 			delete_db(new);
 		}

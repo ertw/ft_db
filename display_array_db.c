@@ -53,6 +53,7 @@ int		count_rows(char *source)
 			rows++;
 		r++;
 	}
+	rows++;
 	fclose(file);
 	return (rows);
 }
@@ -60,12 +61,8 @@ int		count_rows(char *source)
 char	***make_empty(t_parse *meta)
 {
 	char	***db;
-//	int		x;
-//	int		y;
 	int		z;
 
-//	x = 0;
-//	y = 0;
 	db = (char***)ft_memalloc(sizeof(char**) * (meta->columns + 1));
 	db[meta->columns] = 0;
 	z = 0;
@@ -94,7 +91,7 @@ char	***fill_db(t_parse *meta, char *source)
 		fscanf(meta->fd, "%s", buf);
 		db[y][x] = ft_strdup(buf);
 		y++;
-		if (y == meta->columns)
+		if (y >= meta->columns)
 		{
 			x++;
 			y = 0;
@@ -160,7 +157,7 @@ void	display_db(t_parse *meta, char ***db, char *name)
 	pad = get_pad(db);
 	ft_printf("[.cyan.Display DB.] - [.cyan.%s.]\n", name);
 	print_format_line(meta, pad);
-	while (x < meta->rows)
+	while (x < meta->rows - 1)
 	{
 		while (y < meta->columns)
 		{

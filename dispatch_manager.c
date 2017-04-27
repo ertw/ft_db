@@ -31,7 +31,7 @@ void	dispatch_add(t_parse *meta, char **argv)
 {
 	ft_printf("Option: [.green.Add.]\n");
 	if (meta->opt_c == 1)
-		add_array_column(meta, argv);
+		add_array_column(meta, argv[2], argv[3]);
 	else if (meta->opt_r == 1)
 		add_array_row(meta, argv[2], argv[3]);
 }
@@ -40,9 +40,9 @@ void	dispatch_remove(t_parse *meta, char **argv)
 {
 	ft_printf("Option: [.red.Remove.]\n");
 	if (meta->opt_c == 1)
-		remove_array_column(meta, argv);
+		remove_array_column(meta, argv[2], argv[3]);
 	else if (meta->opt_r == 1)
-		remove_array_row(meta, argv);
+		remove_array_row(meta, argv[2], argv[3]);
 }
 
 void	dispatch_modify(t_parse *meta, char **argv)

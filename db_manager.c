@@ -31,12 +31,13 @@ void	add_row_gui(t_parse *meta, char *source)
 {
 	char	buff[100];
 
-	printf("Please type in content for new cells\n");
+	printf("Please type in content for new row cells\n");
 	scanf("%s", buff);
 	add_array_row(meta, source, buff);
 	db_manipulator(meta, source);
 }
 
+<<<<<<< HEAD
 //void	remove_row_gui(t_parse *meta, char ***db)
 //{
 //	char	buff[100];
@@ -46,13 +47,25 @@ void	add_row_gui(t_parse *meta, char *source)
 //	remove_array_row(meta, );
 //	db_manipulator(meta, source);
 //}
+=======
+void	add_column_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in content for new column\n");
+	scanf("%s", buff);
+	add_array_column(meta, source, buff);
+	db_manipulator(meta, source);
+}
+>>>>>>> 3d07084ef54ff1e4acd213d34369cb72b5dd67c5
 
 void	response_manager(t_parse *meta, char ***db, char *source, char *input)
 {
 	printf("%s\n", source);
 	if (input[0] == '1')
 		add_row_gui(meta, source);
-	//else if (selection[0] == '2')
+	else if (input[0] == '2')
+		add_column_gui(meta, source);
 	//else if (selection[0] == '3')
 //	else if (selection[0] == '4')
 //	{
