@@ -53,7 +53,7 @@ t_list		*tokenize(const char *str)
 }
 
 /* create a new tree root */
-t_tree		*tree_new(void const *content, size_t content_size)
+t_tree		*tree_new(void const *content, size_t content_size, t_tree *left, t_tree *right)
 {
 	t_tree		*root;
 	
@@ -65,8 +65,8 @@ t_tree		*tree_new(void const *content, size_t content_size)
 		memcpy(root->content, content, content_size);
 	else
 		root->content = NULL;
-	root->left = NULL;
-	root->right = NULL;
+	root->left = left;
+	root->right = right;
 	return (root);
 }
 
@@ -143,8 +143,8 @@ int		main(void)
 	t_list	*cursor;
 //	if (!(head = database_read(fopen("file.db", "r"))))
 //		return (1);
-	head = tokenize("((person)(((name)(Erik Williamson))((age)(29))))");
-//	head = tokenize("((+)((1)(2)))");
+//	head = tokenize("((person)(((name)(Erik Williamson))((age)(29))))");
+	head = tokenize("((+)((1)(2)))");
 //	while (cursor)
 //	{
 //		printf("%< c >\n", cursor->content);
