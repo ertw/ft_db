@@ -53,7 +53,6 @@ int		count_rows(char *source)
 			rows++;
 		r++;
 	}
-	rows++;
 	fclose(file);
 	return (rows);
 }
@@ -157,7 +156,7 @@ void	display_db(t_parse *meta, char ***db, char *name)
 	pad = get_pad(db);
 	ft_printf("[.cyan.Display DB.] - [.cyan.%s.]\n", name);
 	print_format_line(meta, pad);
-	while (x < meta->rows - 1)
+	while (x < meta->rows)
 	{
 		while (y < meta->columns)
 		{
