@@ -60,5 +60,7 @@ void				db_manager(t_parse *meta);
 char				***add_row(t_parse *meta, char ***db, char *content);
 void				db_manipulator(t_parse *meta, char *source);
 void				db_open(t_parse *meta);
+char				***modify_cell(t_parse *meta, char ***db, char *content);
+int					validate_row_column(t_parse *meta, char *source, char *x, char *y);
 
 #endif
