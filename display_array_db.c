@@ -14,14 +14,14 @@
 
 int		count_columns(char *source)
 {
-	char	*line = NULL;
+	char	*line;
 	char	**split;
-	FILE		*file;
+	FILE	*file;
 	int		x;
-	size_t 		bufsize = 0;
-	int 		i = 0;
+	size_t	bufsize;
 
 	x = 0;
+	bufsize = 0;
 	file = fopen(source, "r");
 	getline(&line, &bufsize, file);
 	split = ft_strsplit(line, ' ');
@@ -29,8 +29,8 @@ int		count_columns(char *source)
 		x++;
 	fclose(file);
 	ft_strdel(&line);
-	while (split[i])
-		ft_strdel(&split[i++]);
+	while (split[bufsize])
+		ft_strdel(&split[bufsize++]);
 	ft_memdel((void*)&split);
 	return (x);
 }
@@ -38,7 +38,7 @@ int		count_columns(char *source)
 int		count_rows(char *source)
 {
 	char	buff[1024];
-	FILE 		*file;
+	FILE	*file;
 	int		r;
 	int		rows;
 
@@ -79,7 +79,7 @@ char	***fill_db(t_parse *meta, char *source)
 	char	***db;
 	int		y;
 	int		x;
-	char 		buf[128];
+	char	buf[128];
 
 	db = make_empty(meta);
 	meta->fd = fopen(source, "r");
