@@ -66,20 +66,16 @@ char	***add_column(t_parse *meta, char ***db, char *new_field)
 		new[y][meta->rows] = 0;
 		if (y == meta->columns)
 		{
-			while(x < meta->rows)
-			{
-				new[y][x] = ft_strdup(new_field);
-				x++;
-			}
+			while (x < meta->rows)
+				new[y][x++] = ft_strdup(new_field);
 		}
 		while (x < meta->rows)
 		{
 			new[y][x] = ft_strdup(db[y][x]);
 			x++;
 		}
-		new[y][x] = 0;
+		new[y++][x] = 0;
 		x = 0;
-		y++;
 	}
 	return (new);
 }
@@ -106,7 +102,6 @@ void	update_db(t_parse *meta, char ***db, char *file_name)
 		x++;
 	}
 	fclose(meta->fd);
-
 }
 
 void	add_array_column(t_parse *meta, char *source, char *content)
