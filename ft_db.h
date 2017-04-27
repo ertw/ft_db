@@ -17,6 +17,17 @@
 # include <stdio.h>
 # include <termios.h>
 
+# define X triplet->x
+# define Y triplet->y
+# define Z triplet->z
+
+typedef struct		s_triplet
+{
+	int		x;
+	int		y;
+	int		z;
+}			t_triplet;
+
 typedef struct		s_parse
 {
 	char			data[100];
@@ -62,5 +73,6 @@ void				db_manipulator(t_parse *meta, char *source);
 void				db_open(t_parse *meta);
 char				***modify_cell(t_parse *meta, char ***db, char *content);
 int					validate_row_column(t_parse *meta, char *source, char *x, char *y);
+t_triplet       		*init_triplet(int x, int y, int z);
 
 #endif

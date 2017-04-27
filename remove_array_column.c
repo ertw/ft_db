@@ -12,40 +12,47 @@
 
 #include "ft_db.h"
 
-char	***remove_column(t_parse *meta, char ***db, char *old_field)
+t_triplet	*init_triplet(int x, int y, int z)
 {
-	char	***new;
-	int		x;
-	int		y;
-	int		z;
+	t_triplet	*triplet;
 
+	triplet = ft_memalloc(sizeof(triplet));
+	triplet->x = x;
+	triplet->y = y;
+	triplet->z = z;
+	return (triplet);
+}
+
+char		***remove_column(t_parse *meta, char ***db, char *old_field)
+{
+	char		***new;
+	t_triplet	*triplet;
+
+	triplet = init_triplet(0, 0, 0);
 	new = (char ***)ft_memalloc(sizeof(char **) * (meta->columns));
 	new[meta->columns - 1] = 0;
-	x = 0;
-	y = 0;
-	z = 0;
-	while (y < meta->columns)
+	while (Y < meta->columns)
 	{
-		if (y != atoi(old_field))
+		if (Y != atoi(old_field))
 		{
-			new[z] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
-			new[z][meta->rows] = 0;
-			x = 0;
-			while (x < meta->rows)
+			new[Z] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
+			new[Z][meta->rows] = 0;
+			X = 0;
+			while (X < meta->rows)
 			{
-				new[z][x] = ft_strdup(db[y][x]);
-				x++;
+				new[Z][X] = ft_strdup(db[Y][X]);
+				X++;
 			}
-			z++;
+			Z++;
 		}
-		y++;
+		Y++;
 	}
 	return (new);
 }
 
-int 	validate_column(t_parse *meta, char	*input)
+int			validate_column(t_parse *meta, char *input)
 {
-	int 	x;
+	int		x;
 
 	x = ft_atoi(input);
 	if (x < 0 || x > meta->columns - 1)
@@ -55,7 +62,7 @@ int 	validate_column(t_parse *meta, char	*input)
 	return (1);
 }
 
-void	remove_array_column(t_parse *meta, char *source, char *content)
+void		remove_array_column(t_parse *meta, char *source, char *content)
 {
 	char	***db;
 	char	***new;
