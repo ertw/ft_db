@@ -27,7 +27,7 @@ OBJS	libft/Makefile	/^OBJS =	$(subst .c,.o,$(SRCS))$/;"	m
 RM	libft/Makefile	/^RM = @rm -f$/;"	m
 SRCS	libft/Makefile	/^SRCS = libft\/ft_memset.c \\$/;"	m
 add_array_column	add_array_column.c	/^void	add_array_column(t_parse *meta, char **argv)$/;"	f	typeref:typename:void
-add_array_row	add_array_row.c	/^void	add_array_row(t_parse *meta, char **argv)$/;"	f	typeref:typename:void
+add_array_row	add_array_row.c	/^void	add_array_row(t_parse *meta, char *source, char *content)$/;"	f	typeref:typename:void
 add_column	add_array_column.c	/^char	***add_column(t_parse *meta, char ***db, char *new_field)$/;"	f	typeref:typename:char ***
 add_row	add_array_row.c	/^char	***add_row(t_parse *meta, char ***db, char *content)$/;"	f	typeref:typename:char ***
 add_row_gui	db_manager.c	/^void	add_row_gui(t_parse *meta, char *source)$/;"	f	typeref:typename:void
