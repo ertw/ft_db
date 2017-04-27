@@ -6,6 +6,7 @@
 
 # Project specific
 cert.ers
+test.db
 
 # Object files
 ft_db
