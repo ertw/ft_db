@@ -31,13 +31,13 @@ int		count_columns(char *source)
 
 int		count_rows(char *source)
 {
-	char	buff[4000];
+	char	buff[1024];
 	int		fd;
 	int		r;
 	int		rows;
 
 	fd = open(source, O_RDONLY);
-	r = read(fd, &buff, 3999);
+	r = read(fd, &buff, 1023);
 	buff[r] = '\0';
 	r = 0;
 	rows = 0;
@@ -77,6 +77,7 @@ char	***fill_db(t_parse *meta, char *source)
 	char	***db;
 	int		y;
 	int		x;
+	char 		buf[128];
 
 	db = make_empty(meta);
 	meta->fd = fopen(source, "r");
@@ -84,8 +85,8 @@ char	***fill_db(t_parse *meta, char *source)
 	y = 0;
 	while (x < meta->rows)
 	{
-		fscanf(meta->fd, "%s", meta->data);
-		db[y][x] = ft_strdup(meta->data);
+		fscanf(meta->fd, "%s", buf);
+		db[y][x] = ft_strdup(buf);
 		y++;
 		if (y == meta->columns)
 		{
