@@ -31,9 +31,19 @@ void	add_row_gui(t_parse *meta, char *source)
 {
 	char	buff[100];
 
-	printf("Please type in content for new cells\n");
+	printf("Please type in content for new row cells\n");
 	scanf("%s", buff);
 	add_array_row(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
+void	add_column_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in content for new column\n");
+	scanf("%s", buff);
+	add_array_column(meta, source, buff);
 	db_manipulator(meta, source);
 }
 
@@ -42,7 +52,8 @@ void	response_manager(t_parse *meta, char ***db, char *source, char *input)
 	printf("%s\n", source);
 	if (input[0] == '1')
 		add_row_gui(meta, source);
-	//else if (selection[0] == '2')
+	else if (input[0] == '2')
+		add_column_gui(meta, source);
 	//else if (selection[0] == '3')
 	//else if (selection[0] == '4')
 	//else if (selection[0] == '5')
