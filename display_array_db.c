@@ -54,12 +54,12 @@ int		count_rows(char *source)
 char	***make_empty(t_parse *meta)
 {
 	char	***db;
-	int		x;
-	int		y;
+//	int		x;
+//	int		y;
 	int		z;
 
-	x = 0;
-	y = 0;
+//	x = 0;
+//	y = 0;
 	db = (char***)ft_memalloc(sizeof(char**) * (meta->columns + 1));
 	db[meta->columns] = 0;
 	z = 0;
