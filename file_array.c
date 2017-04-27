@@ -80,19 +80,6 @@ int		main(void)
 		lst_node_print(cursor);
 		cursor = cursor->next;
 	}
-//	ft_lstiter(sorted, lst_node_print);
 	ft_lstdel(&head, lst_del_data);
 	ft_lstdel(&sorted, lst_del_data);
 }
-
-///* takes a person, returns an age */
-//int		get_age(char *person, int age)
-//{
-//	if (!(strcmp()))
-//}
-
-///* takes a person and age, returns a success / failure */
-//int		add_person(char *person, int age)
-//{
-//
-//}

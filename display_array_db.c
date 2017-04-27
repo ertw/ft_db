@@ -20,6 +20,7 @@ int		count_columns(char *source)
 	int		x;
 	size_t	bufsize;
 
+	line = NULL;
 	x = 0;
 	bufsize = 0;
 	file = fopen(source, "r");
@@ -29,6 +30,7 @@ int		count_columns(char *source)
 		x++;
 	fclose(file);
 	ft_strdel(&line);
+	bufsize = 0;
 	while (split[bufsize])
 		ft_strdel(&split[bufsize++]);
 	ft_memdel((void*)&split);
