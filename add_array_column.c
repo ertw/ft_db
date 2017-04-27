@@ -105,7 +105,7 @@ void	update_db(t_parse *meta, char ***db, char *file_name)
 		y = 0;
 		x++;
 	}
-
+	fclose(meta->fd);
 }
 
 void	add_array_column(t_parse *meta, char **argv)

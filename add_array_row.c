@@ -40,23 +40,23 @@ char	***add_row(t_parse *meta, char ***db, char *content)
 	return (new);
 }
 
-void	add_array_row(t_parse *meta, char **argv)
+void	add_array_row(t_parse *meta, char *source, char *content)
 {
 	char	***db;
 	char	***new;
 
-	if ((access(argv[2], F_OK)) != -1)
+	if ((access(source, F_OK)) != -1)
 	{
 		ft_printf("[.green.Add Row.] - ");
-		if (argv[3])
+		if (content)
 		{
-			ft_printf("[.green.%s.]\n", argv[3]);
-			db = get_db(meta, argv[2]);
-			new = add_row(meta, db, argv[3]);
+			ft_printf("[.green.%s.]\n", content);
+			db = get_db(meta, source);
+			new = add_row(meta, db, content);
 			meta->rows++;
 			if (meta->opt_l == 1)
-				display_db(meta, new, argv[2]);
-			update_db(meta, new, argv[2]);
+				display_db(meta, new, source);
+			update_db(meta, new, source);
 			delete_db(db);
 			delete_db(new);
 		}

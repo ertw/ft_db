@@ -33,7 +33,7 @@ void	dispatch_add(t_parse *meta, char **argv)
 	if (meta->opt_c == 1)
 		add_array_column(meta, argv);
 	else if (meta->opt_r == 1)
-		add_array_row(meta, argv);
+		add_array_row(meta, argv[2], argv[3]);
 }
 
 void	dispatch_remove(t_parse *meta, char **argv)

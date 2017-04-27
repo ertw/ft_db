@@ -29,21 +29,11 @@ void	ls_cwd(t_parse *meta)
 
 void	add_row_gui(t_parse *meta, char *source)
 {
-	char	buff[100] = "hihihihi";
-	char	***new;
-	char	***db;
+	char	buff[100];
 
 	printf("Please type in content for new cells\n");
-	printf("%s\n", source);
-	db = get_db(meta, source);
-	ft_putstr("hi\n");
-	new = add_row(meta, db, buff);
-	ft_putstr("finished add_row\n");
-	meta->rows++;
-	update_db(meta, new, source);
-	ft_putstr("finished update db\n");
-	delete_db(db);
-	delete_db(new);
+	scanf("%s", buff);
+	add_array_row(meta, source, buff);
 	db_manipulator(meta, source);
 }
 
@@ -72,7 +62,6 @@ void	db_manipulator(t_parse *meta, char *source)
 	char	***db;
 	char	buff[100];
 
-	printf("%s\n", source);
 	db = get_db(meta, source);
 	display_db(meta, db, source);
 	ft_printf("** EZ-DB Options **\n");
@@ -86,7 +75,6 @@ void	db_manipulator(t_parse *meta, char *source)
 	ft_printf("(0) Quit\n");
 	ft_printf("Please make a selection\n");
 	scanf("%s", buff);
-	printf("%s", source);
 	response_manager(meta, db, source, buff);
 	delete_db(db);
 }
