@@ -48,7 +48,6 @@ void	add_row_gui(t_parse *meta, char *source)
 	db_manipulator(meta, source);
 }
 
-
 void	add_array_row(t_parse *meta, char *source, char *content)
 {
 	char	***db;

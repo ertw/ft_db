@@ -50,7 +50,7 @@ char		***remove_column(t_parse *meta, char ***db, char *old_field)
 	return (new);
 }
 
-void	remove_column_gui(t_parse *meta, char *source)
+void		remove_column_gui(t_parse *meta, char *source)
 {
 	char	buff[100];
 
