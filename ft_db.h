@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifdef __FreeBSD__
+# define _GNU_SOURCE
+#endif
+
 #ifndef FT_DB_H
 # define FT_DB_H
 # include "./libft/includes/libft.h"
