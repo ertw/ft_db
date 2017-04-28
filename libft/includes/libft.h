@@ -185,9 +185,9 @@ char				*ft_itoal(int nbr);
 int					ft_sizel(int nbr);
 char				*ft_malloc(int size);
 int					ft_mmurder(t_n **a, int fd);
-char 				**ft_strdup2d(char **str2d, int start);
-void 				ft_strdel2d(char **str);
-char 				**ft_strndup2d(char **str2d, int start, int end);
+char				**ft_strdup2d(char **str2d, int start);
+void				ft_strdel2d(char **str);
+char				**ft_strndup2d(char **str2d, int start, int end);
 int					ft_strdelic(char *s1, char *s2, char delim);
 
 #endif

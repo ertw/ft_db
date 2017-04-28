@@ -52,30 +52,28 @@ char	***get_db(t_parse *meta, char *source)
 
 char	***add_column(t_parse *meta, char ***db, char *new_field)
 {
-	char	***new;
-	int		x;
-	int		y;
+	char		***new;
+	t_triplet	*triplet;
 
+	triplet = init_triplet(0, 0, 0);
 	new = (char ***)ft_memalloc(sizeof(char **) * (meta->columns + 2));
 	new[meta->columns + 1] = 0;
-	x = 0;
-	y = 0;
-	while (y < meta->columns + 1)
+	while (Y < meta->columns + 1)
 	{
-		new[y] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
-		new[y][meta->rows] = 0;
-		if (y == meta->columns)
+		new[Y] = (char**)ft_memalloc(sizeof(char*) * (meta->rows + 1));
+		new[Y][meta->rows] = 0;
+		if (Y == meta->columns)
 		{
-			while (x < meta->rows)
-				new[y][x++] = ft_strdup(new_field);
+			while (X < meta->rows)
+				new[Y][X++] = ft_strdup(new_field);
 		}
-		while (x < meta->rows)
+		while (X < meta->rows)
 		{
-			new[y][x] = ft_strdup(db[y][x]);
-			x++;
+			new[Y][X] = ft_strdup(db[Y][X]);
+			X++;
 		}
-		new[y++][x] = 0;
-		x = 0;
+		new[Y++][X] = 0;
+		X = 0;
 	}
 	return (new);
 }

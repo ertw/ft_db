@@ -54,6 +54,7 @@ static int	start(char *f, int c)
 	ft_strdel(&ptr);
 	return (c);
 }
+
 static int	finish(int c)
 {
 	ft_putstr("\e[0m");
