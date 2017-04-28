@@ -39,6 +39,16 @@ char	***remove_row(t_parse *meta, char ***db, char *new_row)
 	return (new);
 }
 
+void	remove_row_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in row number to remove [0 - %d]\n", meta->rows - 1);
+	scanf("%s", buff);
+	remove_array_row(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
 int		validate_rows(t_parse *meta, char *row_number)
 {
 	int x;

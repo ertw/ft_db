@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef __FreeBSD__
-# define _GNU_SOURCE
-#endif
-
 #ifndef FT_DB_H
 # define FT_DB_H
+# ifdef __FreeBSD__
+#  define _GNU_SOURCE
+# endif
 # include "./libft/includes/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
@@ -82,5 +81,7 @@ void				add_row_gui(t_parse *meta, char *source);
 void				add_column_gui(t_parse *meta, char *source);
 void				remove_column_gui(t_parse *meta, char *source);
 void				modify_cell_gui(t_parse *meta, char *source);
+void				remove_row_gui(t_parse *meta, char *source);
+void				ls_cwd(t_parse *meta);
 
 #endif

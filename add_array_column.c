@@ -88,30 +88,6 @@ void	add_column_gui(t_parse *meta, char *source)
 	db_manipulator(meta, source);
 }
 
-void	update_db(t_parse *meta, char ***db, char *file_name)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	meta->fd = fopen(file_name, "w+");
-	while (x < meta->rows)
-	{
-		while (y < meta->columns)
-		{
-			fprintf(meta->fd, "%s", db[y][x]);
-			if (y + 1 < meta->columns)
-				fprintf(meta->fd, " ");
-			y++;
-		}
-		fprintf(meta->fd, "\n");
-		y = 0;
-		x++;
-	}
-	fclose(meta->fd);
-}
-
 void	add_array_column(t_parse *meta, char *source, char *content)
 {
 	char	***db;

@@ -12,32 +12,6 @@
 
 #include "ft_db.h"
 
-void	ls_cwd(t_parse *meta)
-{
-	char	buff[100];
-	char	*path;
-	char	*cwd;
-
-	cwd = getcwd(buff, 100);
-	path = ft_strjoin("/bin/ls ", cwd);
-	meta->fd = popen(path, "r");
-	ft_strdel(&path);
-	while (fgets(buff, sizeof(buff) - 1, meta->fd) != NULL)
-		printf("%s", buff);
-	pclose(meta->fd);
-}
-
-
-void	remove_row_gui(t_parse *meta, char *source)
-{
-	char	buff[100];
-
-	printf("Please type in row number to remove [0 - %d]\n", meta->rows - 1);
-	scanf("%s", buff);
-	remove_array_row(meta, source, buff);
-	db_manipulator(meta, source);
-}
-
 void	response_manager(t_parse *meta, char ***db, char *source, char *input)
 {
 	printf("%s\n", source);
