@@ -78,5 +78,9 @@ void				db_open(t_parse *meta);
 char				***modify_cell(t_parse *meta, char ***db, char *content);
 int					validate_row_column(t_parse *m, char *s, char *x, char *y);
 t_triplet			*init_triplet(int x, int y, int z);
+void				add_row_gui(t_parse *meta, char *source);
+void				add_column_gui(t_parse *meta, char *source);
+void				remove_column_gui(t_parse *meta, char *source);
+void				modify_cell_gui(t_parse *meta, char *source);
 
 #endif

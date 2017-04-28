@@ -78,6 +78,16 @@ char	***add_column(t_parse *meta, char ***db, char *new_field)
 	return (new);
 }
 
+void	add_column_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in content for new column\n");
+	scanf("%s", buff);
+	add_array_column(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
 void	update_db(t_parse *meta, char ***db, char *file_name)
 {
 	int x;

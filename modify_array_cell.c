@@ -61,6 +61,28 @@ char	***modify_cell(t_parse *meta, char ***db, char *content)
 	return (new);
 }
 
+void	modify_cell_gui(t_parse *meta, char *source)
+{
+	char	x[100];
+	char	y[100];
+	char	content[100];
+	char	***db;
+	char	***new;
+
+	printf("Please type in a row number [0 - %d]\n", meta->rows - 1);
+	scanf("%s", x);
+	printf("Please type in a column number [0 - %d]\n", meta->columns - 1);
+	scanf("%s", y);
+	if (!(validate_row_column(meta, source, x, y)))
+		return ;
+	printf("Please type new content: ");
+	scanf("%s", content);
+	db = get_db(meta, source);
+	new = modify_cell(meta, db, content);
+	update_db(meta, new, source);
+	db_manipulator(meta, source);
+}
+
 void	modify_array_cell(t_parse *meta, char **argv)
 {
 	char	***db;

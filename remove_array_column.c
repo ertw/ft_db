@@ -50,6 +50,17 @@ char		***remove_column(t_parse *meta, char ***db, char *old_field)
 	return (new);
 }
 
+void	remove_column_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in column number to remove [0 - %d]\n",
+			meta->columns - 1);
+	scanf("%s", buff);
+	remove_array_column(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
 int			validate_column(t_parse *meta, char *input)
 {
 	int		x;
