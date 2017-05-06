@@ -65,4 +65,6 @@ void	dispatch_manager(t_parse *meta, char **argv)
 		db_manager(meta);
 	else if (meta->opt_l == 1)
 		display_array_db(meta, argv);
+	else if (meta->opt_h == 1)
+		help();
 }
