@@ -6,13 +6,13 @@
 /*   By: rschramm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 15:55:00 by rschramm          #+#    #+#             */
-/*   Updated: 2017/01/13 18:10:43 by rschramm         ###   ########.fr       */
+/*   Updated: 2017/05/05 22:36:25 by rschramm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-void	cert_check(t_parse *meta)
+static void	cert_check(t_parse *meta)
 {
 	if ((access("cert.ers", F_OK)) != -1)
 	{
@@ -26,38 +26,40 @@ void	cert_check(t_parse *meta)
 	}
 }
 
-void	print_usage(void)
+static void	first_half(t_parse *meta, int c)
 {
-	ft_putstr("usage: [.blue.EZ-DB.] [-acdlrmx] [...]\n");
+	if (c == 'l')
+		meta->opt_l = 1;
+	else if (c == 'a')
+		meta->opt_a = 1;
+	else if (c == 'r')
+		meta->opt_r = 1;
+	else if (c == 'x')
+		meta->opt_x = 1;
 }
 
-void	print_bad_opts(char c)
+static void	second_half(t_parse *meta, int c)
 {
-	print_usage();
-	ft_printf("[.blue.EZ-DB.]: %c : [.red.invalid option.].\n", c);
+	if (c == 'c')
+		meta->opt_c = 1;
+	else if (c == 'm')
+		meta->opt_m = 1;
+	else if (c == 'd')
+		meta->opt_d = 1;
+	else if (c == 'h')
+		meta->opt_h = 1;
 }
 
-void	parse_args(int argc, char **argv, t_parse *meta)
+static void	parse_args(int argc, char **argv, t_parse *meta)
 {
 	int	c;
 
-	while ((c = getopt(argc, argv, "-acdlrmx")) != -1)
+	while ((c = getopt(argc, argv, "-acdhlrmx")) != -1)
 	{
-		if (c == 'l')
-			meta->opt_l = 1;
-		else if (c == 'a')
-			meta->opt_a = 1;
-		else if (c == 'r')
-			meta->opt_r = 1;
-		else if (c == 'x')
-			meta->opt_x = 1;
-		else if (c == 'c')
-			meta->opt_c = 1;
-		else if (c == 'm')
-			meta->opt_m = 1;
-		else if (c == 'd')
-			meta->opt_d = 1;
-		else
+		if (c == 'l' || c == 'a' || c == 'r' || c == 'x')
+			first_half(meta, c);
+		else if (c == 'c' || c == 'm' || c == 'd' || c == 'h')
+			second_half(meta, c);
 		{
 			print_bad_opts(c);
 			break ;
@@ -66,7 +68,7 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 	cert_check(meta);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_parse meta;
 

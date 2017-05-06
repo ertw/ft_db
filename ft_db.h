@@ -6,7 +6,7 @@
 /*   By: rschramm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 15:55:00 by rschramm          #+#    #+#             */
-/*   Updated: 2017/01/13 18:10:43 by rschramm         ###   ########.fr       */
+/*   Updated: 2017/05/05 22:37:20 by rschramm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_parse
 	int				opt_x;
 	int				opt_m;
 	int				opt_d;
+	int				opt_h;
 	int				columns;
 	int				rows;
 	int				cert_present;
@@ -83,5 +84,8 @@ void				remove_column_gui(t_parse *meta, char *source);
 void				modify_cell_gui(t_parse *meta, char *source);
 void				remove_row_gui(t_parse *meta, char *source);
 void				ls_cwd(t_parse *meta);
+void				help(void);
+void				print_bad_opts(char c);
+void				print_usage(void);
 
 #endif
