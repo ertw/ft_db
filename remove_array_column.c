@@ -47,6 +47,7 @@ char		***remove_column(t_parse *meta, char ***db, char *old_field)
 		}
 		Y++;
 	}
+	ft_memdel((void*)&triplet);
 	return (new);
 }
 
