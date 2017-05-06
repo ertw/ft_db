@@ -12,7 +12,7 @@
 
 #include "ft_db.h"
 
-int	error_control(t_parse *meta)
+int		error_control(t_parse *meta)
 {
 	if (meta->opt_c == 1 && meta->opt_r == 1)
 	{

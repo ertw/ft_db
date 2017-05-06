@@ -20,12 +20,14 @@ int		validate_row_column(t_parse *meta, char *source, char *x, char *y)
 	meta->rows = count_rows(source);
 	if (meta->x > meta->rows - 1 || meta->x < 0)
 	{
-		printf("Invalid user input: %d: Row must be between 0 and %d\n", meta->x, meta->rows - 1);
+		printf("Invalid user input: %d: Row must be between 0 and %d\n",
+				meta->x, meta->rows - 1);
 		return (0);
 	}
 	else if (meta->y > meta->columns - 1 || meta->y < 0)
 	{
-		printf("Invalid user input: %d: Column must be between 0 and %d\n", meta->y, meta->columns - 1);
+		printf("Invalid user input: %d: Column must be between 0 and %d\n",
+				meta->y, meta->columns - 1);
 		return (0);
 	}
 	return (1);
@@ -34,8 +36,8 @@ int		validate_row_column(t_parse *meta, char *source, char *x, char *y)
 char	***modify_cell(t_parse *meta, char ***db, char *content)
 {
 	char	***new;
-	int 	x;
-	int 	y;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -59,6 +61,28 @@ char	***modify_cell(t_parse *meta, char ***db, char *content)
 	return (new);
 }
 
+void	modify_cell_gui(t_parse *meta, char *source)
+{
+	char	x[100];
+	char	y[100];
+	char	content[100];
+	char	***db;
+	char	***new;
+
+	printf("Please type in a row number [0 - %d]\n", meta->rows - 1);
+	scanf("%s", x);
+	printf("Please type in a column number [0 - %d]\n", meta->columns - 1);
+	scanf("%s", y);
+	if (!(validate_row_column(meta, source, x, y)))
+		return ;
+	printf("Please type new content: ");
+	scanf("%s", content);
+	db = get_db(meta, source);
+	new = modify_cell(meta, db, content);
+	update_db(meta, new, source);
+	db_manipulator(meta, source);
+}
+
 void	modify_array_cell(t_parse *meta, char **argv)
 {
 	char	***db;
@@ -67,7 +91,7 @@ void	modify_array_cell(t_parse *meta, char **argv)
 	if ((access(argv[2], F_OK)) != -1)
 	{
 		ft_printf("[.yellow.Modify Field.] - ");
-		if (argv[3] && argv[4] && argv[5] && 
+		if (argv[3] && argv[4] && argv[5] &&
 			validate_row_column(meta, argv[2], argv[3], argv[4]))
 		{
 			ft_printf("[.yellow.%s.]\n", argv[5]);

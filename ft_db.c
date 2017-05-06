@@ -26,6 +26,17 @@ void	cert_check(t_parse *meta)
 	}
 }
 
+void	print_usage(void)
+{
+	ft_putstr("usage: [.blue.EZ-DB.] [-acdlrmx] [...]\n");
+}
+
+void	print_bad_opts(char c)
+{
+	print_usage();
+	ft_printf("[.blue.EZ-DB.]: %c : [.red.invalid option.].\n", c);
+}
+
 void	parse_args(int argc, char **argv, t_parse *meta)
 {
 	int	c;
@@ -48,8 +59,7 @@ void	parse_args(int argc, char **argv, t_parse *meta)
 			meta->opt_d = 1;
 		else
 		{
-			ft_printf("[.blue.EZ-DB.]: %c : [.red.invalid option.].\n", c);
-			ft_printf("usage: [.blue.EZ-DB.] [-acdlrmx] [...]\n");
+			print_bad_opts(c);
 			break ;
 		}
 	}
@@ -61,7 +71,7 @@ int		main(int argc, char **argv)
 	t_parse meta;
 
 	if (argc == 1)
-		ft_putstr("usage: [.blue.EZ-DB.] [-acdlrmx] [...]\n");
+		print_usage();
 	else
 		parse_args(argc, argv, &meta);
 	if (meta.cert_present == 0 && argc > 1)

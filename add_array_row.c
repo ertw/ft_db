@@ -38,6 +38,16 @@ char	***add_row(t_parse *meta, char ***db, char *content)
 	return (new);
 }
 
+void	add_row_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in content for new cells\n");
+	scanf("%s", buff);
+	add_array_row(meta, source, buff);
+	db_manipulator(meta, source);
+}
+
 void	add_array_row(t_parse *meta, char *source, char *content)
 {
 	char	***db;

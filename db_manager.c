@@ -12,83 +12,6 @@
 
 #include "ft_db.h"
 
-void	ls_cwd(t_parse *meta)
-{
-	char	buff[100];
-	char	*path;
-	char	*cwd;
-
-	cwd = getcwd(buff, 100);
-	path = ft_strjoin("/bin/ls ", cwd);
-	meta->fd = popen(path, "r");
-	ft_strdel(&path);
-	while (fgets(buff, sizeof(buff)-1, meta->fd) != NULL)
-		printf("%s", buff);
-	pclose(meta->fd);
-}
-
-void	add_row_gui(t_parse *meta, char *source)
-{
-	char	buff[100];
-
-	printf("Please type in content for new cells\n");
-	scanf("%s", buff);
-	add_array_row(meta, source, buff);
-	db_manipulator(meta, source);
-}
-
-void	add_column_gui(t_parse *meta, char *source)
-{
-	char	buff[100];
-
-	printf("Please type in content for new column\n");
-	scanf("%s", buff);
-	add_array_column(meta, source, buff);
-	db_manipulator(meta, source);
-}
-
-void	remove_column_gui(t_parse *meta, char *source)
-{
-	char	buff[100];
-
-	printf("Please type in column number to remove [0 - %d]\n", meta->columns - 1);
-	scanf("%s", buff);
-	remove_array_column(meta, source, buff);
-	db_manipulator(meta, source);
-}
-
-void	remove_row_gui(t_parse *meta, char *source)
-{
-	char	buff[100];
-
-	printf("Please type in row number to remove [0 - %d]\n", meta->rows - 1);
-	scanf("%s", buff);
-	remove_array_row(meta, source, buff);
-	db_manipulator(meta, source);
-}
-
-void	modify_cell_gui(t_parse *meta, char *source)
-{
-	char	x[100];
-	char	y[100];
-	char	content[100] = "lala";
-	char	***db;
-	char	***new;
-
-	printf("Please type in a row number [0 - %d]\n", meta->rows - 1);
-	scanf("%s", x);
-	printf("Please type in a column number [0 - %d]\n", meta->columns - 1);
-	scanf("%s", y);
-	if (!(validate_row_column(meta, source, x, y)))
-		return ;
-	printf("Please type new content: ");
-	scanf("%s", content);
-	db = get_db(meta, source);
-	new = modify_cell(meta, db, content);
-	update_db(meta, new, source);
-	db_manipulator(meta, source);
-}
-
 void	response_manager(t_parse *meta, char ***db, char *source, char *input)
 {
 	printf("%s\n", source);
@@ -149,7 +72,8 @@ void	db_open(t_parse *meta)
 	}
 	else
 	{
-		ft_printf("Opps, something wrong with filename [.red.%s.]\n", meta->data);
+		ft_printf("Opps, something wrong with filename [.red.%s.]\n",
+				meta->data);
 		db_manager(meta);
 	}
 }

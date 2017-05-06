@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_array_row.c                                    :+:      :+:    :+:   */
+/*   remove_array_row.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschramm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,36 +14,39 @@
 
 char	***remove_row(t_parse *meta, char ***db, char *new_row)
 {
-	char	***new;
-	int		x;
-	int		y;
-	int		z;
-	int		row;
+	char		***new;
+	t_triplet	*triplet;
+	int			row;
 
-	x = 0;
-	y = 0;
-	z = 0;
+	triplet = init_triplet(0, 0, 0);
 	row = ft_atoi(new_row);
 	new = (char ***)ft_memalloc(sizeof(char **) * (meta->columns + 1));
 	new[meta->columns] = 0;
-	while (y < meta->columns)
+	while (Y < meta->columns)
 	{
-		new[y] = (char**)ft_memalloc(sizeof(char*) * (meta->rows));
-		new[y][meta->rows - 1] = 0;
-		while (x < meta->rows)
+		new[Y] = (char**)ft_memalloc(sizeof(char*) * (meta->rows));
+		new[Y][meta->rows - 1] = 0;
+		while (X < meta->rows)
 		{
-			if (x != row)
-			{
-				new[y][z] = ft_strdup(db[y][x]);
-				z++;
-			}
-			x++;
+			if (X != row)
+				new[Y][Z++] = ft_strdup(db[Y][X]);
+			X++;
 		}
-		z = 0;
-		x = 0;
-		y++;
+		Z = 0;
+		X = 0;
+		Y++;
 	}
 	return (new);
+}
+
+void	remove_row_gui(t_parse *meta, char *source)
+{
+	char	buff[100];
+
+	printf("Please type in row number to remove [0 - %d]\n", meta->rows - 1);
+	scanf("%s", buff);
+	remove_array_row(meta, source, buff);
+	db_manipulator(meta, source);
 }
 
 int		validate_rows(t_parse *meta, char *row_number)

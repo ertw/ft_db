@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdelic.c                                      :+:      :+:    :+:   */
+/*   ls_cwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewilliam <me@erik.tw>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/10 17:12:28 by rschramm          #+#    #+#             */
-/*   Updated: 2017/02/10 21:56:54 by rschramm         ###   ########.fr       */
+/*   Created: 2016/11/28 15:55:00 by rschramm          #+#    #+#             */
+/*   Updated: 2017/01/13 18:10:43 by rschramm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "ft_db.h"
 
-int		ft_strdelic(char *s1, char *s2, char delim)
+void	update_db(t_parse *meta, char ***db, char *file_name)
 {
-	int c;
+	int x;
+	int y;
 
-	c = 0;
-	while (s1[c] == s2[c] && s1[c] != '\0')
+	x = 0;
+	y = 0;
+	meta->fd = fopen(file_name, "w+");
+	while (x < meta->rows)
 	{
-		if (s1[c + 1] == delim || s2[c + 1] == delim)
-			break ;
-		c++;
+		while (y < meta->columns)
+		{
+			fprintf(meta->fd, "%s", db[y][x]);
+			if (y + 1 < meta->columns)
+				fprintf(meta->fd, " ");
+			y++;
+		}
+		fprintf(meta->fd, "\n");
+		y = 0;
+		x++;
 	}
-	if (s1[c + 1] == s2[c + 1])
-		return (1);
-	return (0);
+	fclose(meta->fd);
 }

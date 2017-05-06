@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strndup2d.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ewilliam <me@erik.tw>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/10 17:12:28 by rschramm          #+#    #+#             */
+/*   Updated: 2017/02/10 21:56:54 by rschramm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/libft.h"
 
-char	**ft_strndup2d(char	**str2d, int start, int end)
+char	**ft_strndup2d(char **str2d, int start, int end)
 {
 	char	**new;
 	int		x;
@@ -11,7 +23,7 @@ char	**ft_strndup2d(char	**str2d, int start, int end)
 	while (end >= y)
 	{
 		if (str2d[y][0] != '>' && str2d[y][0] != '<')
-			x++;		
+			x++;
 		y++;
 	}
 	new = (char**)ft_memalloc(sizeof(char*) * (x + 1));
