@@ -88,9 +88,11 @@ void	db_new(t_parse *meta)
 	{
 		ft_putstr("File name taken\n");
 		db_new(meta);
+		return ;
 	}
 	meta->fd = fopen(new_file, "w");
 	fprintf(meta->fd, "new new new\nnew new new\n");
+	fclose(meta->fd);
 	db_open(meta);
 }
 
