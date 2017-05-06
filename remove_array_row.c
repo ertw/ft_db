@@ -36,6 +36,7 @@ char	***remove_row(t_parse *meta, char ***db, char *new_row)
 		X = 0;
 		Y++;
 	}
+	ft_memdel((void*)&triplet);
 	return (new);
 }
 
