@@ -26,28 +26,36 @@ static void	cert_check(t_parse *meta)
 	}
 }
 
-static void	first_half(t_parse *meta, int c)
+static int	first_half(t_parse *meta, int c)
 {
-	if (c == 'l')
+	int x;
+
+	x = 0;
+	if (c == 'l' && (x = 1))
 		meta->opt_l = 1;
-	else if (c == 'a')
+	else if (c == 'a' && (x = 1))
 		meta->opt_a = 1;
-	else if (c == 'r')
+	else if (c == 'r' && (x = 1))
 		meta->opt_r = 1;
-	else if (c == 'x')
+	else if (c == 'x' && (x = 1))
 		meta->opt_x = 1;
+	return (x);
 }
 
-static void	second_half(t_parse *meta, int c)
+static int	second_half(t_parse *meta, int c)
 {
-	if (c == 'c')
+	int x;
+
+	x = 0;
+	if (c == 'c' && (x = 1))
 		meta->opt_c = 1;
-	else if (c == 'm')
+	else if (c == 'm' && (x = 1))
 		meta->opt_m = 1;
-	else if (c == 'd')
+	else if (c == 'd' && (x = 1))
 		meta->opt_d = 1;
-	else if (c == 'h')
+	else if (c == 'h' && (x = 1))
 		meta->opt_h = 1;
+	return (x);
 }
 
 static void	parse_args(int argc, char **argv, t_parse *meta)
@@ -60,6 +68,7 @@ static void	parse_args(int argc, char **argv, t_parse *meta)
 			first_half(meta, c);
 		else if (c == 'c' || c == 'm' || c == 'd' || c == 'h')
 			second_half(meta, c);
+		else
 		{
 			print_bad_opts(c);
 			break ;
