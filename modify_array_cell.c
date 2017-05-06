@@ -81,6 +81,8 @@ void	modify_cell_gui(t_parse *meta, char *source)
 	new = modify_cell(meta, db, content);
 	update_db(meta, new, source);
 	db_manipulator(meta, source);
+	delete_db(db);
+	delete_db(new);
 }
 
 void	modify_array_cell(t_parse *meta, char **argv)
