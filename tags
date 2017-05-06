@@ -37,7 +37,7 @@ all	Makefile	/^all: information $(NAME)$/;"	t
 all	libft/Makefile	/^all: $(NAME)$/;"	t
 arg	libft/includes/libft.h	/^	va_list			arg;$/;"	m	struct:s_print	typeref:typename:va_list
 big	libft/printf/ft_hex.c	/^static void	big(t_print *all, char c)$/;"	f	typeref:typename:void	file:
-cert_check	ft_db.c	/^void	cert_check(t_parse *meta)$/;"	f	typeref:typename:void
+cert_check	ft_db.c	/^static void	cert_check(t_parse *meta)$/;"	f	typeref:typename:void	file:
 cert_present	ft_db.h	/^	int				cert_present;$/;"	m	struct:s_parse	typeref:typename:int
 ch	libft/includes/libft.h	/^	char			ch;$/;"	m	struct:s_print	typeref:typename:char
 clean	Makefile	/^clean:$/;"	t
@@ -72,6 +72,7 @@ fin	libft/includes/libft.h	/^	int				fin;$/;"	m	struct:s_n	typeref:typename:int
 find_ret	libft/get_next_line/get_next_line.c	/^int		find_ret(t_n *a)$/;"	f	typeref:typename:int
 finish	libft/printf/ft_colors.c	/^static int	finish(int c)$/;"	f	typeref:typename:int	file:
 first	libft/printf/ft_right_align.c	/^static t_print	*first(t_print *all)$/;"	f	typeref:typename:t_print *	file:
+first_half	ft_db.c	/^static void	first_half(t_parse *meta, int c)$/;"	f	typeref:typename:void	file:
 flags	libft/includes/libft.h	/^	char			*flags;$/;"	m	struct:s_print	typeref:typename:char *
 flags	libft/printf/ft_flags.c	/^int	flags(t_print *all, char *f)$/;"	f	typeref:typename:int
 format	libft/printf/ft_format.c	/^void		format(t_print *all, char spec)$/;"	f	typeref:typename:void
@@ -203,7 +204,7 @@ login_certification	user_login.c	/^int		login_certification(char *user, char *pa
 lower_c	libft/printf/ft_retrieve.c	/^static void	lower_c(t_print *all, va_list arg)$/;"	f	typeref:typename:void	file:
 lower_s	libft/printf/ft_retrieve.c	/^static void	lower_s(t_print *all, va_list arg)$/;"	f	typeref:typename:void	file:
 ls_cwd	ls_cwd.c	/^void	ls_cwd(t_parse *meta)$/;"	f	typeref:typename:void
-main	ft_db.c	/^int		main(int argc, char **argv)$/;"	f	typeref:typename:int
+main	ft_db.c	/^int			main(int argc, char **argv)$/;"	f	typeref:typename:int
 main	libft/printf/main.c	/^int		main(int argc, char **argv)$/;"	f	typeref:typename:int
 make_empty	display_array_db_helpers.c	/^char	***make_empty(t_parse *meta)$/;"	f	typeref:typename:char ***
 modify_array_cell	modify_array_cell.c	/^void	modify_array_cell(t_parse *meta, char **argv)$/;"	f	typeref:typename:void
@@ -217,19 +218,18 @@ one	libft/printf/ft_hex.c	/^static void	one(t_print *all, char c)$/;"	f	typeref:
 opt_a	ft_db.h	/^	int				opt_a;$/;"	m	struct:s_parse	typeref:typename:int
 opt_c	ft_db.h	/^	int				opt_c;$/;"	m	struct:s_parse	typeref:typename:int
 opt_d	ft_db.h	/^	int				opt_d;$/;"	m	struct:s_parse	typeref:typename:int
+opt_h	ft_db.h	/^	int				opt_h;$/;"	m	struct:s_parse	typeref:typename:int
 opt_l	ft_db.h	/^	int				opt_l;$/;"	m	struct:s_parse	typeref:typename:int
 opt_m	ft_db.h	/^	int				opt_m;$/;"	m	struct:s_parse	typeref:typename:int
 opt_r	ft_db.h	/^	int				opt_r;$/;"	m	struct:s_parse	typeref:typename:int
 opt_x	ft_db.h	/^	int				opt_x;$/;"	m	struct:s_parse	typeref:typename:int
 pad	libft/includes/libft.h	/^	int				pad;$/;"	m	struct:s_print	typeref:typename:int
 parse	libft/printf/ft_parse.c	/^void		parse(t_print *all, char *f)$/;"	f	typeref:typename:void
-parse_args	ft_db.c	/^void	parse_args(int argc, char **argv, t_parse *meta)$/;"	f	typeref:typename:void
+parse_args	ft_db.c	/^static void	parse_args(int argc, char **argv, t_parse *meta)$/;"	f	typeref:typename:void	file:
 percent_found	libft/printf/ft_percent_found.c	/^int	percent_found(t_print *all, char *f)$/;"	f	typeref:typename:int
 precision	libft/includes/libft.h	/^	int				precision;$/;"	m	struct:s_print	typeref:typename:int
 precision	libft/printf/ft_flags.c	/^int	precision(t_print *all, char *f)$/;"	f	typeref:typename:int
-print_bad_opts	ft_db.c	/^void	print_bad_opts(char c)$/;"	f	typeref:typename:void
 print_format_line	display_array_db.c	/^void	print_format_line(t_parse *meta, int pad)$/;"	f	typeref:typename:void
-print_usage	ft_db.c	/^void	print_usage(void)$/;"	f	typeref:typename:void
 r	libft/includes/libft.h	/^	int				r;$/;"	m	struct:s_n	typeref:typename:int
 raw	libft/includes/libft.h	/^	char			*raw;$/;"	m	struct:s_print	typeref:typename:char *
 raw_i	libft/includes/libft.h	/^	uintmax_t		raw_i;$/;"	m	struct:s_print	typeref:typename:uintmax_t
@@ -257,6 +257,7 @@ s_parse	ft_db.h	/^typedef struct		s_parse$/;"	s
 s_print	libft/includes/libft.h	/^typedef struct		s_print$/;"	s
 s_triplet	ft_db.h	/^typedef struct		s_triplet$/;"	s
 second	libft/printf/ft_oct.c	/^static int	second(t_print *all, char c)$/;"	f	typeref:typename:int	file:
+second_half	ft_db.c	/^static void	second_half(t_parse *meta, int c)$/;"	f	typeref:typename:void	file:
 sign	libft/includes/libft.h	/^	char			sign;$/;"	m	struct:s_print	typeref:typename:char
 size	libft/printf/ft_oct.c	/^static int	size(t_print *all, char c)$/;"	f	typeref:typename:int	file:
 spec	libft/includes/libft.h	/^	char			spec;$/;"	m	struct:s_print	typeref:typename:char
